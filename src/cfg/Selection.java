@@ -2,7 +2,7 @@ package cfg;
 
 import java.io.IOException;
 
-import comp.menuItem;
+import menuitem.menuItem;
 
 public class Selection{
 	

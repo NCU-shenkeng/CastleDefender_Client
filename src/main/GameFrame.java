@@ -9,9 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import cfg.Window;
-import screen.CustomScreen;
-import screen.EnterScreen;
-
 
 
 public class GameFrame extends JFrame{
@@ -24,6 +21,7 @@ public class GameFrame extends JFrame{
 		setTitle("CastleDenfender");
 		setSize(Window.WIDTH , Window.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		//getContentPane().add(new EnterScreen());
 	}
 	

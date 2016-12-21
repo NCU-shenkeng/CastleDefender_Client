@@ -28,8 +28,8 @@ public class MenuScreen extends CustomScreen implements KeyListener
 		for(int i = 0 ; i < Selection.list.length ; i++)
 		{
 			JLabel l = new JLabel(new ImageIcon(Selection.list[i].icon));
-			int w = 400;
-			int h = 250 + i*100;
+			int w = 450;
+			int h = 200 + i*100;
 			l.setBounds(w, h , Selection.list[i].icon.getWidth(), Selection.list[i].icon.getHeight());
 			labelList[i] = l;
 		}
