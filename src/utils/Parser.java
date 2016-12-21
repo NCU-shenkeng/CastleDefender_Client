@@ -34,7 +34,7 @@ public class Parser {
 		switch(character)
 		{
 		case Mage:
-			return "ªk®v";
+			return "½åªÌ";
 		case Guard:
 			return "¨Í½Ã";
 		case OrdinaryPeople:

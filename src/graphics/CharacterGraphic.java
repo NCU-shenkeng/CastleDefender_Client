@@ -70,9 +70,9 @@ public class CharacterGraphic extends Graph
 		{
 			g.drawImage(image, // image
 			player.getCordinateXInPanel(), //location x
-			player.getCordinateYInPanel()-50, //location y
+			player.getCordinateYInPanel(), //location y
 			100, //width
-			150, //height
+			100, //height
 			null);
 		} 
 		else // draw other
