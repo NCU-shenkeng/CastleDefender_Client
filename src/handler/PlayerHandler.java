@@ -3,6 +3,7 @@ package handler;
 import cfg.DirectionType;
 import cfg.Self;
 import dom.DOM;
+import graphics.EffectGraphics;
 import udp.Packet;
 
 import utils.Parser;
@@ -29,6 +30,21 @@ public class PlayerHandler
 		}
 			
 	}
+	public static void handlePickStart(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		int leftTime = Integer.parseInt(packet.getArgs().get(1));
+		int fullTime = Integer.parseInt(packet.getArgs().get(2));
+		
+		DOM.updatePlayerIsPicking(number, true);
+		DOM.updatePlayerPickingFullTime(number, fullTime);
+		DOM.updatePlayerPickingLeftTime(number, leftTime);
+	}
 	
+	public static void handlePickFail(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		
+		DOM.updatePlayerIsPicking(number, false);
+		
+	}
 	
 }

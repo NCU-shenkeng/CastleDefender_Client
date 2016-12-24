@@ -15,31 +15,33 @@ public class GameEngine extends Engine{
 	Thread sprite;
 	Thread item;
 	Thread info;
+	Thread effect;
 	
 	SceneEngine sceneEngine;
 	SpriteEngine spriteEngine;
 	ItemEngine	itemEngine;
 	InfoEngine infoEngine;
+	EffectEngine effectEngine;
 
-	
-	BufferedImage[] array;
-	
 	public GameEngine(){
 		
 			sceneEngine = new SceneEngine();
 			spriteEngine = new SpriteEngine();
 			itemEngine= new ItemEngine();
 			infoEngine = new InfoEngine();
+			effectEngine = new EffectEngine();
 			
 			scene = new Thread(sceneEngine);
 			sprite = new Thread(spriteEngine);
 			item = new Thread(itemEngine);
 			info = new Thread(infoEngine);
+			effect = new Thread(effectEngine);
 			
 			scene.start();
 			sprite.start();
 			item.start();
 			info.start();
+			effect.start();
 	}
 	
 	@Override
@@ -59,6 +61,7 @@ public class GameEngine extends Engine{
 			bufferG.drawImage(spriteEngine.getBuffer(),0 ,0, null);
 			bufferG.drawImage(itemEngine.getBuffer(),0 ,0, null);	
 			bufferG.drawImage(infoEngine.getBuffer(), 0, 0, null);
+			bufferG.drawImage(effectEngine.getBuffer() , 0 , 0 , null);
 			
 			Graphics g = GamePanel.getGame().getGraphics();
 			g.drawImage(buffer, 0, 0, null);

@@ -7,8 +7,17 @@ public class Item
 	private int type;
 	private int x;
 	private int y;
-	private int allTime;
-	private int leftTime;
+	
+	public Item (int type , int x , int y){
+		this.type = type;
+		this.x = x;
+		this.y = y;
+	}
+	public Item(int x , int y){
+		this.x = x;
+		this.y =y;
+	}
+	public Item(){}
 	
 	public int getType()
 	{
@@ -29,5 +38,13 @@ public class Item
 	{
 		this.x = (int)itemxy.getX();
 		this.y = (int)itemxy.getY();
+	}
+	
+	@Override
+	public boolean equals(Object object){
+		if(object == null) return false;
+		final Item o = (Item) object;
+		if(this.x == o.x && this.y == o.y){return true;}
+		return false;
 	}
 }

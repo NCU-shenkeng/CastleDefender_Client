@@ -7,7 +7,12 @@ public class Keyboard {
 	private static boolean DOWN = false;
 	private static boolean LEFT = false;
 	private static boolean RIGHT = false;
-
+	private static boolean SPACE = false;
+	
+	
+	public static boolean getSpace(){
+		return SPACE;
+	}
 	
 	public static boolean getUpLeft(){
 		return (UP && LEFT);
@@ -59,9 +64,12 @@ public class Keyboard {
 	public static void setDown(boolean b){
 		DOWN = b;
 	}
+	public static void setSpace(boolean b){
+		SPACE = b;
+	}
 	
 	public static boolean isKeyBoardDown(){
-		return (UP || RIGHT || DOWN || LEFT);
+		return (UP || RIGHT || DOWN || LEFT || SPACE);
 	}
 	
 }
