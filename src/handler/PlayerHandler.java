@@ -1,9 +1,12 @@
 package handler;
 
+import java.io.IOException;
+
 import cfg.DirectionType;
 import cfg.Self;
 import dom.DOM;
 import graphics.EffectGraphics;
+import main.GameFrame;
 import panel.GamePanel;
 import udp.Packet;
 
@@ -62,7 +65,12 @@ public class PlayerHandler
 		DOM.updatePlayerIsDead(number, true);
 		DOM.updatePlayerReviveTime(number, reviveTime);
 		if(number == Self.number)
-			GamePanel.getGame().removeKeyListener(GamePanel.getGame());
+			try {
+				GameFrame.getGame().requestFocus();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	public static void handleInjury(Packet packet){
@@ -76,6 +84,6 @@ public class PlayerHandler
 		
 		DOM.updatePlayerIsDead(number, false);
 		if(number == Self.number)
-			GamePanel.getGame().addKeyListener(GamePanel.getGame());
+			GamePanel.getGame().requestFocus();
 	}
 }
