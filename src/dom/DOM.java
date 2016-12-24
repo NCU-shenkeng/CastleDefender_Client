@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cfg.DirectionType;
 import cfg.Self;
+import graphics.BackgroundGraphics;
 import player.Player;
 
 public class DOM {
@@ -20,7 +21,9 @@ public class DOM {
 	public static ArrayList<Player> getPlayerTable(){
 		return PlayerTable.getPlayerTable().getTable();
 	}
-	
+	public static void addPlayer(Player player){
+		PlayerTable.getPlayerTable().getTable().add(player);
+	}
 	public static void updatePlayerLocation(int number , int x , int y)
 	{
 		Player player = getPlayer(number);

@@ -19,7 +19,7 @@ public class PlayerHandler
 	
 			
 		
-		System.out.println("number " + number + " x " + x +" y " + y + " direction " + direction + " isAnimating " + isAnimating);
+		//System.out.println("number " + number + " x " + x +" y " + y + " direction " + direction + " isAnimating " + isAnimating);
 
 		
 		if(number != Self.number){

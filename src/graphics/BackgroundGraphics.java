@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import background.BasicBlockType;
 import background.Map;
 import cfg.Self;
+import dom.DOM;
 import main.GameFrame;
 import player.Player;
 public class BackgroundGraphics extends Graph
@@ -35,15 +36,15 @@ public class BackgroundGraphics extends Graph
 			 					   "images/backgound/FLOOR1.bmp",
 			 					   "images/backgound/FLOOR2.bmp",
 			 					   "images/backgound/DRAIN.bmp",
-			 					   "images/backgound/CASTLE1.bmp",
-			 					   "images/backgound/CASTLE2.bmp",
-			 					   "images/backgound/CASTLE3.bmp",
-			 					   "images/backgound/CASTLE4.bmp",
-			 					   "images/backgound/CASTLE5.bmp",
-			 					   "images/backgound/CASTLE6.bmp",
-			 					   "images/backgound/CASTLE7.bmp",
-			 					   "images/backgound/CASTLE8.bmp",
-			 					   "images/backgound/CASTLE9.bmp"};
+			 					   "images/backgound/CASTLE_A1.png",
+			 					   "images/backgound/CASTLE_A2.png",
+			 					   "images/backgound/CASTLE_A3.png",
+			 					   "images/backgound/CASTLE_A4.png",
+			 					   "images/backgound/CASTLE_A5.png",
+			 					   "images/backgound/CASTLE_A6.png",
+			 					   "images/backgound/CASTLE_A7.png",
+			 					   "images/backgound/CASTLE_A8.png",
+			 					   "images/backgound/CASTLE_A9.png"};
 	
 	int userViewWidth = 1100;
 	int userViewHigh = 700;
@@ -87,6 +88,13 @@ public class BackgroundGraphics extends Graph
 
 	}
 	
+	public void setBlockX(int blockX){
+		this.BlockX = blockX;
+	}
+	public void setBlockY(int blockY){
+		this.BlockY = BlockY;
+	}
+	
 	public boolean canPass(int x , int y){
 		return map.scene[x][y].canPass;
 	}
@@ -103,7 +111,7 @@ public class BackgroundGraphics extends Graph
 		{
 		  for (int j = BlockY - blockhighOffset; j <= BlockY + blockhighOffset; j++)
 		  {
-			  if (map.scene[i][j].type >= BasicBlockType.CASTLE1)
+			  if (map.scene[i][j].type >= BasicBlockType.CASTLE_A1)
 				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
 			  else
 				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
@@ -160,8 +168,8 @@ public class BackgroundGraphics extends Graph
 	
 	private void InitLocation()
 	{
-		this.BlockX = dom.DOM.getSelf().getSprite().getX();
-		this.BlockY = dom.DOM.getSelf().getSprite().getY();		
+		this.BlockX = DOM.getSelf().getSprite().getX();
+		this.BlockY = DOM.getSelf().getSprite().getY();
 	}
 	
 	private void OpenImge (BufferedImage img[])
