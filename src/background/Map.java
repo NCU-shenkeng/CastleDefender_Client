@@ -22,8 +22,7 @@ public class Map
 	
 	public void CreateMap() throws IOException
 	{	  
-	  // Initialize
-		System.out.println("Initialize CreateMap()_Start");
+//		Initialize
 	  
 		FileReader fr = new FileReader("images/backgound/mapfile.txt");
 		BufferedReader br = new BufferedReader(fr);
@@ -34,7 +33,7 @@ public class Map
 		{
 			for ( i = 0; i < line.length(); i++)
 			{
-				System.out.println("[" + i + "," + j + "] = " + line.charAt(i));
+//				System.out.println("[" + i + "," + j + "] = " + line.charAt(i));
 				
 				int blocktype = Character.getNumericValue(line.charAt(i));
 				
@@ -50,8 +49,5 @@ public class Map
 		}
 		
 		fr.close();
-
-//	  System.out.println("X:" + i + " Y:" + j);
-	  System.out.println("Initialize CreateMap()_End");
 	}
 }

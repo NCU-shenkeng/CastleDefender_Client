@@ -18,7 +18,6 @@ public class main {
 	{
 	   
 		JFrame game = GameFrame.getGame();
-		
 		ArrayList<Player> table = PlayerTable.getPlayerTable().getTable();
 		table.add(new Player(0, CharacterType.Guard, 0, 13, 49));
 		table.add(new Player(1, CharacterType.Guard, 1, 14, 49));

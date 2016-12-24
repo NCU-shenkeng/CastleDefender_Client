@@ -11,6 +11,7 @@ public class BasicBlockType
 	public static final int FLOOR1 = 6;
 	public static final int FLOOR2 = 7;
 	public static final int DRAIN = 8;
+	public static final int CASTLE = 9;	
 	
-	public static final int NUMOFBLOCK = 9;	
+	public static final int NUMOFBLOCK = 10;	
 }

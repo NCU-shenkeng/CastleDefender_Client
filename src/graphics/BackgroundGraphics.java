@@ -18,14 +18,23 @@ import background.Map;
 import cfg.Self;
 import main.GameFrame;
 import player.Player;
-public class BackgroundGraphics extends Graph implements KeyListener, ActionListener{
+public class BackgroundGraphics extends Graph implements ActionListener{
 
 	public Graphics g;
 	private int BlockX;
 	private int BlockY;
 	private Map map;
 	private BufferedImage img[] = new BufferedImage[BasicBlockType.NUMOFBLOCK];
-	
+	private final String path[] = {"images/backgound/ROCK.bmp",
+			 					   "images/backgound/SAND1.bmp",
+			 					   "images/backgound/SAND2.bmp",
+			 					   "images/backgound/GRASS1.bmp",
+			 					   "images/backgound/GRASS2.bmp",
+			 					   "images/backgound/BLACK.bmp",
+			 					   "images/backgound/FLOOR1.bmp",
+			 					   "images/backgound/FLOOR2.bmp",
+			 					   "images/backgound/DRAIN.bmp",
+			 					   "images/backgound/CASTLE.bmp"};
 	
 	int userViewWidth = 1100;
 	int userViewHigh = 700;
@@ -141,15 +150,6 @@ public class BackgroundGraphics extends Graph implements KeyListener, ActionList
 	
 	private void OpenImge (BufferedImage img[])
 	{
-		String path[] = {"images/backgound/ROCK.bmp",
-						 "images/backgound/SAND1.bmp",
-						 "images/backgound/SAND2.bmp",
-						 "images/backgound/GRASS1.bmp",
-						 "images/backgound/GRASS2.bmp",
-						 "images/backgound/BLACK.bmp",
-						 "images/backgound/FLOOR1.bmp",
-						 "images/backgound/FLOOR2.bmp",
-						 "images/backgound/DRAIN.bmp"};
 		File origFile;
 		
 		for (int i = 0; i < BasicBlockType.NUMOFBLOCK; i++)
@@ -166,70 +166,6 @@ public class BackgroundGraphics extends Graph implements KeyListener, ActionList
 				  e.printStackTrace();
 			}			
 		}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) 
-	{
-		switch (arg0.getKeyCode())
-		{
-			case KeyEvent.VK_UP:
-				//SetBlockValue(0, -1);
-				Key[0] = 1;
-			try {
-				GameFrame.getGame().refresh();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				break;
-			case KeyEvent.VK_LEFT:
-				//SetBlockValue(-1, 0);
-				Key[1] = 1;
-				break;
-			case KeyEvent.VK_DOWN:
-				//SetBlockValue(0, 1);
-				Key[2] = 1;
-				break;
-			case KeyEvent.VK_RIGHT:
-				//SetBlockValue(1, 0);
-				Key[3] = 1;
-				break;
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0)
-	{
-		switch (arg0.getKeyCode())
-		{
-			case KeyEvent.VK_UP:
-				//SetBlockValue(0, -1);
-				Key[0] = 0;
-				break;
-			case KeyEvent.VK_LEFT:
-				//SetBlockValue(-1, 0);
-				Key[1] = 0;
-				break;
-			case KeyEvent.VK_DOWN:
-				//SetBlockValue(0, 1);
-				Key[2] = 0;
-				break;
-			case KeyEvent.VK_RIGHT:
-				//SetBlockValue(1, 0);
-				Key[3] = 0;
-				break;
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
 	}
 
 	@Override
