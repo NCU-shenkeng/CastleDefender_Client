@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import dom.DOM;
 import player.Player;
@@ -12,8 +15,13 @@ import utils.ImageTool;
 import utils.Parser;
 
 public class InfoGraphics extends Graph{
-	
-	private BufferedImage info;
+	BufferedImage img[] = new BufferedImage[15];
+	private int list[] = new int[11];
+	private int time[] = new int[11];
+	private int elist[] = new int[11];
+	private String Blood="";
+	private String eBlood="";
+	private BufferedImage info,selfinfo,enemyinfo;
 	private static InfoGraphics infoGraphic = null;
 	
 	public static InfoGraphics getGraphic(){
@@ -25,9 +33,48 @@ public class InfoGraphics extends Graph{
 		return infoGraphic;
 	}
 	
+	private void OpenImge (BufferedImage img[])
+	{
+		String path[] = {"images/item/null.png",
+						 "images/item/ATTACKSPEED1.bmp",
+				  		 "images/item/ATTACKSPEED2.bmp",
+				  		 "images/item/ATTACKSPEED3.bmp",
+				  		 "images/item/ATTACKUP1.bmp",
+				  		 "images/item/ATTACKUP2.bmp",
+				  		 "images/item/ATTACKUP3.bmp",
+				  		 "images/item/HEAL.bmp",
+				  		 "images/item/LIFECHANGE.bmp",
+				  		 "images/item/OPPORTUNITY.bmp",
+				  		 "images/item/SHIELD1.bmp",
+				  		 "images/item/SHIELD2.bmp",
+				  		 "images/item/SHIELD3.bmp",
+				  		 "images/item/STEALING.bmp",
+						 "images/item/TRANSPORT.bmp"};
+		File origFile;
+		for (int i = 0; i < path.length; i++)
+		{
+			origFile = new File(path[i]);
+			try 
+			{
+				img[i] = ImageIO.read(origFile);
+			} 
+			catch (IOException e) 
+			{
+				  System.out.println("OpenImge error");
+				  e.printStackTrace();
+			}
+			catch(Exception e)
+			{
+				System.out.println("BufferdImage Array size error");
+			}
+		}
+	}
 	private InfoGraphics() {
 		try {
+			OpenImge(img);
 			info = ImageTool.getImage("images/info_bar.png");
+			selfinfo = ImageTool.getImage("images/info_selfCastle_bar.png");
+			enemyinfo = ImageTool.getImage("images/info_enemyCastle_bar.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +108,73 @@ public class InfoGraphics extends Graph{
 		
 	}
 	
-	public void drawSelfCastleInformation(Graphics g){
+	public void drawSelfCastleInformation(Graphics g)
+	{
+		int bloodx=530;
+		int bloody=565;
+		int offset=45;
+		int itemx=305;
+		int itemy=607;
+		int cdx=312;
+		int cdy=615;
+		int fullcircle = 360;
+		int itemsize=30;
+		int cdsize=20;
+		g.drawImage(selfinfo, 180, 525, 730,150, null);
+		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
+		g.setColor(new Color(220, 255, 200, 200));
+		g.drawString(Blood, bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
+		g.setColor(new Color(255, 255, 255, 200));
+		for(int i=0;i<11;i++)
+		{
+			int j = list[i]; //list[] 是dom提供的 改好把list刪掉拿dom的就好
+			int lefttime = time[i]; //time[] 同上 下面缺角跟圓算數學 time[]存要缺的角度 
+			try
+			{
+				
+				g.drawImage(img[j],itemx,itemy,itemsize,itemsize,null);
+				
+				if(j!=0)
+					g.fillArc(cdx,cdy, cdsize, cdsize, lefttime, fullcircle-lefttime);
+					
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println("Not such as item");
+			}
+			itemx+=offset;
+			cdx+=offset;
+		}
 	}
-	public void drawEnemyCastleInformation(Graphics g){}
+	public void drawEnemyCastleInformation(Graphics g)
+	{
+		int ebloodx=525;
+		int ebloody=50;
+		int offset=45;
+		int eitemx=600;
+		int eitemy=15;
+		int itemsize=30;
+		g.drawImage(enemyinfo, 360, 0, 730,150, null);
+		
+		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
+		g.setColor(new Color(220, 255, 200, 200));
+		g.drawString(eBlood, ebloodx, ebloody); //eblood敵人城堡血量 同上
+		g.setColor(new Color(255, 255, 255, 200));
+		for(int i=0;i<11;i++)
+		{
+			
+			int eitem = elist[i]; //elist[]敵人buff  DOM提供 待修改
+			try
+			{
+				g.drawImage(img[eitem],eitemx,eitemy,itemsize,itemsize,null);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Not such as item");
+			}
+			
+			eitemx+=offset;
+		}
+	}
 }
