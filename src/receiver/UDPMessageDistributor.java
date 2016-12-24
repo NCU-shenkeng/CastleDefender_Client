@@ -7,7 +7,7 @@ import handler.PlayerHandler;
 import udp.Packet;
 import udp.ServerMessageDecoder;
 
-public class MessageDistributor {
+public class UDPMessageDistributor {
 	
 	private int eventCode;
 	

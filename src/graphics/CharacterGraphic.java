@@ -42,7 +42,7 @@ public class CharacterGraphic extends Graph
 	}
 	
 	public void drawStaticPlayer(Graphics g , Player player)
-	{	if(player.equals(DOM.getSelf()))
+	{
 			this.drawPlayer(g, player, player.getSprite().getStaticImage());
 	}
 	

@@ -55,9 +55,12 @@ public class SceneEngine extends Engine{
 										   DOM.getSelf().getSprite().getY() ,
 										   utils.Parser.directionToInt(DOM.getSelf().getSprite().getFacing()),
 										   utils.Parser.parseBoolean(DOM.getSelf().getSprite().getIsAnimating()));
-			System.out.println(sendMsg);
+			//System.out.println(sendMsg);
 			
 			TCPClient.getInstance().send(sendMsg);
+			
+			System.out.println(Self.number);
+			System.out.println(Self.team);
 
 	}
 }

@@ -12,8 +12,8 @@ import cfg.Window;
 import dom.DOM;
 
 import graphics.BackgroundGraphics;
-import receiver.MessageReceiver;
-import tcp.IReceive;
+import receiver.TCPMessageReceiver;
+import receiver.UDPMessageReceiver;
 import tcp.TCPClient;
 import udp.Server;
 
@@ -21,7 +21,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	
 	
 	private static GamePanel game = null;
-	private static MessageReceiver receiver;
+	private static UDPMessageReceiver UDPReceiver;
+	private static TCPMessageReceiver TCPReceiver;
 	
 	private GamePanel(){
 		this.setBounds(0, 0, Window.WIDTH, Window.HEIGHT);
@@ -29,22 +30,13 @@ public class GamePanel extends JPanel implements KeyListener {
 		this.requestFocus();
 		this.setVisible(true);
 		this.addKeyListener(this);
-		receiver = new MessageReceiver();
-		
+		UDPReceiver = new UDPMessageReceiver();
+		TCPReceiver = new TCPMessageReceiver();
 		Server.initUDPServer(); // run the client
-		Server.getUDPUS().setReceiveAction(receiver); // regist receiver
+		Server.getUDPUS().setReceiveAction(UDPReceiver); // regist receiver
 
 		TCPClient.getInstance().initTCPClient();
-		TCPClient.getInstance().registReceiveAction(new IReceive() {
-			
-			@Override
-			public void onReceive(String msg) {
-				System.out.println(msg);
-			}
-			
-			@Override
-			public void afterReceive(Socket client) {}
-		});
+		TCPClient.getInstance().registReceiveAction(TCPReceiver);
 	}
 	
 	public static GamePanel getGame(){
