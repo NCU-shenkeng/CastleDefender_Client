@@ -10,6 +10,14 @@ public class Keyboard {
 	private static boolean SPACE = false;
 	
 	
+	public static void  reset(){
+		UP = false;
+		DOWN = false;
+		LEFT = false;
+		RIGHT = false;
+		SPACE = false;
+	}
+	
 	public static boolean getSpace(){
 		return (SPACE);
 	}

@@ -10,7 +10,13 @@ public class EngineTable {
 	public static ArrayList<Engine> engineTable = new ArrayList<Engine>();
 	
 	public static void stopAllEngine(){
-		for(Engine engine : engineTable)
+		for(Engine engine : engineTable){
 			engine.stop();
+		}
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

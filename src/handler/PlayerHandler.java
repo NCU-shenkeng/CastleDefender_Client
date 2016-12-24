@@ -4,6 +4,7 @@ package handler;
 import java.io.IOException;
 
 import cfg.DirectionType;
+import cfg.Keyboard;
 import cfg.Self;
 import dom.DOM;
 import graphics.EffectGraphics;
@@ -67,6 +68,7 @@ public class PlayerHandler
 		DOM.updatePlayerReviveTime(number, reviveTime);
 		if(number == Self.number)
 			try {
+				Keyboard.reset();
 				GameFrame.getGame().requestFocus();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
