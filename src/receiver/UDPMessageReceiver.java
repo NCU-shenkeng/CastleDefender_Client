@@ -1,3 +1,4 @@
+
 package receiver;
 
 public class UDPMessageReceiver implements ReceiveAction{
@@ -12,5 +13,4 @@ public class UDPMessageReceiver implements ReceiveAction{
 		//System.out.println(msg);
 		distributor.distributeMessage(msg);
 	}
-	
 }

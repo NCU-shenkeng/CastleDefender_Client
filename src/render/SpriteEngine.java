@@ -1,3 +1,4 @@
+
 package render;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,6 @@ public class SpriteEngine extends Engine{
 		update();
 		
 	}
-
 	@Override
 	public void render() {
 		buffer = new BufferedImage(Window.WIDTH, Window.HEIGHT,BufferedImage.TYPE_INT_ARGB);
@@ -52,6 +52,15 @@ public class SpriteEngine extends Engine{
 			else
 				player.getSprite().getAnimation().stop();
 		}
+		checkSelfIsKeyboardDown();
 	
+	}
+	
+	public void checkSelfIsKeyboardDown(){
+		if(!Keyboard.isKeyBoardDown())
+		{
+			DOM.getSelf().getSprite().setAnimating(false);
+			DOM.getSelf().getSprite().getAnimation().stop();
+		}
 	}
 }

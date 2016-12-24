@@ -2,25 +2,18 @@ package graphics;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
+import java.awt.image.BufferedImage;
 
 import cfg.Keyboard;
 import cfg.Self;
 import dom.DOM;
-import dom.PlayerTable;
+
 import player.Player;
-import render.SpriteEngine;
-import utils.ImageTool;
-import utils.Parser;
+
 
 public class CharacterGraphic extends Graph
 {
@@ -73,7 +66,7 @@ public class CharacterGraphic extends Graph
 		if(player.getNumber() == Self.number)//draw self
 		{
 			g.drawImage(image, // image
-			player.getCordinateXInPanel(), //location x
+			player.getCordinateXInPanel()+3, //location x
 			player.getCordinateYInPanel(), //location y
 			80, //width
 			100, //height
@@ -162,5 +155,3 @@ public class CharacterGraphic extends Graph
 	}
 	
 }
-
-

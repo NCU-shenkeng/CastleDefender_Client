@@ -11,7 +11,7 @@ public class Keyboard {
 	
 	
 	public static boolean getSpace(){
-		return SPACE;
+		return (SPACE);
 	}
 	
 	public static boolean getUpLeft(){

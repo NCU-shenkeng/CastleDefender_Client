@@ -1,3 +1,4 @@
+
 package render;
 
 import java.awt.Color;
@@ -6,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import cfg.Window;
+import dom.EngineTable;
 import panel.GamePanel;
 import utils.ImageTool;
 public class GameEngine extends Engine{
@@ -31,11 +33,19 @@ public class GameEngine extends Engine{
 			infoEngine = new InfoEngine();
 			effectEngine = new EffectEngine();
 			
+			EngineTable.engineTable.add(sceneEngine);
+			EngineTable.engineTable.add(spriteEngine);
+			EngineTable.engineTable.add(itemEngine);
+			EngineTable.engineTable.add(infoEngine);
+			EngineTable.engineTable.add(effectEngine);
+			EngineTable.engineTable.add(this);
+			
 			scene = new Thread(sceneEngine);
 			sprite = new Thread(spriteEngine);
 			item = new Thread(itemEngine);
 			info = new Thread(infoEngine);
 			effect = new Thread(effectEngine);
+			
 			
 			scene.start();
 			sprite.start();

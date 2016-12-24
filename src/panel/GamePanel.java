@@ -1,3 +1,4 @@
+
 package panel;
 
 
@@ -53,50 +54,49 @@ public class GamePanel extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) 
 	{
-		DOM.getSelf().getSprite().setAnimating(true);
 		switch (arg0.getKeyCode())
 		{
 			case KeyEvent.VK_UP:
 				Keyboard.setUp(true);
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_LEFT:
 				Keyboard.setLeft(true);
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_DOWN:
 				Keyboard.setDown(true);
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_RIGHT:
 				Keyboard.setRight(true);
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_A:
 				Keyboard.setSpace(true);
 				System.out.println("4,"+Integer.toString(Self.number));
 				TCPClient.getInstance().send("4,"+Integer.toString(Self.number));
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			default:
 				break;
 		}
 	}
-
 	@Override
 	public void keyReleased(KeyEvent arg0) 
 	{
 		switch (arg0.getKeyCode())
 		{
 			case KeyEvent.VK_UP:
-				BackgroundGraphics.getGraph().Key[0] = 0;
 				Keyboard.setUp(false);
 				break;
 			case KeyEvent.VK_LEFT:
-				BackgroundGraphics.getGraph().Key[1] = 0;
 				Keyboard.setLeft(false);
 				break;
 			case KeyEvent.VK_DOWN:
-				BackgroundGraphics.getGraph().Key[2] = 0;
 				Keyboard.setDown(false);
 				break;
 			case KeyEvent.VK_RIGHT:
-				BackgroundGraphics.getGraph().Key[3] = 0;
 				Keyboard.setRight(false);
 				break;
 			case KeyEvent.VK_SPACE:
@@ -108,14 +108,7 @@ public class GamePanel extends JPanel implements KeyListener {
 			default:
 				break;
 		}
-		
-		if(!Keyboard.isKeyBoardDown())
-		{
-			DOM.getSelf().getSprite().setAnimating(false);
-			DOM.getSelf().getSprite().getAnimation().stop();
-		}
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) 
 	{
