@@ -43,7 +43,7 @@ public class CharacterGraphic extends Graph
 	
 	public void drawStaticPlayer(Graphics g , Player player)
 	{
-			this.drawPlayer(g, player, player.getSprite().getStaticImage());
+		this.drawPlayer(g, player, player.getSprite().getStaticImage());
 	}
 	
 	public void drawAnimatingPlayer(Graphics g ,Player player)
@@ -59,6 +59,11 @@ public class CharacterGraphic extends Graph
 			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); //draw self
 		}
 	}
+
+	public void drawDeadPlayer(Graphics g , Player player){
+		drawFigure(g, player, player.getSprite().getDeadImage());
+	}
+	
 	private void drawPlayer(Graphics g , Player player , BufferedImage image)
 	{
 		drawFigure(g, player, image);

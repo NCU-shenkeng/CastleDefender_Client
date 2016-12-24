@@ -27,16 +27,15 @@ public class SpriteEngine extends Engine{
 		Graphics graphics = buffer.getGraphics();
 	
 		for(Player player : DOM.getPlayerTable())
-		{
-			if(player.getSprite().getIsAnimating())
-			{
-				CharacterGraphic.getGraphic().drawAnimatingPlayer(graphics, player);
-			}			
-			else {
-				CharacterGraphic.getGraphic().drawStaticPlayer(graphics, player);
+		{		
+			if(player.getIsDead()){
+				CharacterGraphic.getGraphic().drawDeadPlayer(graphics, player);
+				continue;
 			}
-				
-				
+			if(player.getSprite().getIsAnimating())
+				CharacterGraphic.getGraphic().drawAnimatingPlayer(graphics, player);	
+			else 
+				CharacterGraphic.getGraphic().drawStaticPlayer(graphics, player);
 		}
 		doneImage = buffer;
 		

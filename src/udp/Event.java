@@ -8,7 +8,7 @@ public class Event
 	public static final int PLAYER_ATTACK = 4;// playerID
 	public static final int PLAYER_INJURY = 5;// playerID
 	public static final int PLAYER_LOCATION_CHANGE = 6;// playerID,x,y,­±¦V,TP
-	public static final int PLAYER_DEAD = 7;// playerID
+	public static final int PLAYER_DEAD = 7;// playerID , reviveTime
 	public static final int PLAYER_REVIVE = 8;// playerID
 	public static final int PLAYER_ITEM_START = 9;// playerID , lefttime , fulltime
 	public static final int PLAYER_ITEM_SUCCESS = 10;// playerID
