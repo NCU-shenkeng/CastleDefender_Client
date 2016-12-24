@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import background.BasicBlockType;
 import background.Map;
 import cfg.Self;
+import dom.DOM;
 import main.GameFrame;
 import player.Player;
 public class BackgroundGraphics extends Graph
@@ -85,6 +86,13 @@ public class BackgroundGraphics extends Graph
 			this.BlockY = BlockY + offsetY;
 		}
 
+	}
+	
+	public void setBlockX(int blockX){
+		this.BlockX = blockX;
+	}
+	public void setBlockY(int blockY){
+		this.BlockY = BlockY;
 	}
 	
 	public boolean canPass(int x , int y){
@@ -160,8 +168,8 @@ public class BackgroundGraphics extends Graph
 	
 	private void InitLocation()
 	{
-		this.BlockX = 4 + 9;
-		this.BlockY = 3 + 45;		
+		this.BlockX = DOM.getSelf().getSprite().getX();
+		this.BlockY = DOM.getSelf().getSprite().getY();
 	}
 	
 	private void OpenImge (BufferedImage img[])
