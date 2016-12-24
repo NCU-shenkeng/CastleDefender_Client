@@ -40,10 +40,12 @@ public class PlayerHandler
 		DOM.updatePlayerPickingFullTime(number, fullTime);
 		DOM.updatePlayerPickingLeftTime(number, leftTime);
 	}
-	
+	public static void handlePickSuccess(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		DOM.updatePlayerIsPicking(number, false);
+	}
 	public static void handlePickFail(Packet packet){
 		int number = Integer.parseInt(packet.getArgs().get(0));
-		
 		DOM.updatePlayerIsPicking(number, false);
 		
 	}
@@ -59,7 +61,8 @@ public class PlayerHandler
 		
 		DOM.updatePlayerIsDead(number, true);
 		DOM.updatePlayerReviveTime(number, reviveTime);
-		GamePanel.getGame().removeKeyListener(GamePanel.getGame());
+		if(number == Self.number)
+			GamePanel.getGame().removeKeyListener(GamePanel.getGame());
 	}
 	
 	public static void handleInjury(Packet packet){
@@ -72,6 +75,7 @@ public class PlayerHandler
 		int number = Integer.parseInt(packet.getArgs().get(0));
 		
 		DOM.updatePlayerIsDead(number, false);
-		GamePanel.getGame().addKeyListener(GamePanel.getGame());
+		if(number == Self.number)
+			GamePanel.getGame().addKeyListener(GamePanel.getGame());
 	}
 }

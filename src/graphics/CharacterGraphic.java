@@ -73,7 +73,7 @@ public class CharacterGraphic extends Graph
 		if(player.getNumber() == Self.number)//draw self
 		{
 			g.drawImage(image, // image
-			player.getCordinateXInPanel(), //location x
+			player.getCordinateXInPanel()+3, //location x
 			player.getCordinateYInPanel(), //location y
 			80, //width
 			100, //height

@@ -2,6 +2,7 @@ package receiver;
 
 import java.util.Vector;
 
+import handler.ClientConfigHandler;
 import handler.ItemHandler;
 import handler.PlayerHandler;
 import player.Player;
@@ -31,6 +32,7 @@ public class UDPMessageDistributor {
 				case udp.Event.CASTLE_HP_CHANGE:
 					break;
 				case udp.Event.GAME_OVER:
+					ClientConfigHandler.setWinnerOrLoser(packet);
 					break;
 				case udp.Event.GAME_START:
 					break;
@@ -58,6 +60,7 @@ public class UDPMessageDistributor {
 					PlayerHandler.handlePickStart(packet);
 					break;
 				case udp.Event.PLAYER_ITEM_SUCCESS:
+					PlayerHandler.handlePickSuccess(packet);
 					break;
 				case udp.Event.PLAYER_LOCATION_CHANGE:
 					PlayerHandler.handlerLocationChange(packet);

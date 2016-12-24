@@ -31,8 +31,8 @@ public abstract class Engine implements Runnable
 				lastTime = now;
 				tick();
 			}
-				
-			render();
+			if(running)	
+				render();
 		}
 	}
 	
@@ -53,4 +53,5 @@ public abstract class Engine implements Runnable
 	public BufferedImage getBuffer(){
 		return doneImage;
 	}
+
 }
