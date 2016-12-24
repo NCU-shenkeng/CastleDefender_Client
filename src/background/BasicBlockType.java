@@ -21,15 +21,6 @@ public class BasicBlockType
 	public static final int CASTLE_A7 = 15;
 	public static final int CASTLE_A8 = 16;
 	public static final int CASTLE_A9 = 17;
-	public static final int CASTLE_B1 = 18;
-	public static final int CASTLE_B2 = 19;
-	public static final int CASTLE_B3 = 20;
-	public static final int CASTLE_B4 = 21;
-	public static final int CASTLE_B5 = 22;
-	public static final int CASTLE_B6 = 23;
-	public static final int CASTLE_B7 = 24;
-	public static final int CASTLE_B8 = 25;
-	public static final int CASTLE_B9 = 26;
 	
-	public static final int NUMOFBLOCK = 27;	
+	public static final int NUMOFBLOCK = 18;	
 }

@@ -92,7 +92,7 @@ public class BackgroundGraphics extends Graph
 		this.BlockX = blockX;
 	}
 	public void setBlockY(int blockY){
-		this.BlockY = BlockY;
+		this.BlockY = blockY;
 	}
 	
 	public boolean canPass(int x , int y){
