@@ -1,7 +1,9 @@
+
 package receiver;
 
 import java.util.Vector;
 
+import handler.CastleHandler;
 import handler.ClientConfigHandler;
 import handler.ItemHandler;
 import handler.PlayerHandler;
@@ -26,10 +28,12 @@ public class UDPMessageDistributor {
 				case udp.Event.CASTLE_BUFF_ADD:
 					break;
 				case udp.Event.CASTLE_BUFF_LIST:
+					CastleHandler.castleBuff(packet);
 					break;
 				case udp.Event.CASTLE_BUFF_REMOVE:
 					break;
 				case udp.Event.CASTLE_HP_CHANGE:
+					CastleHandler.castleBlood(packet);
 					break;
 				case udp.Event.GAME_OVER:
 					ClientConfigHandler.setWinnerOrLoser(packet);

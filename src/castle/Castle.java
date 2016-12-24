@@ -43,7 +43,7 @@ public class Castle {
 	{
 		for(int i = 0; i <= 10 ; i++)
 		{
-			SelfCastleBuff[i] = buff[i];
+			EnemyCastleBuff[i] = buff[i];
 		}
 	}
 	public int[] getCastleBuff()

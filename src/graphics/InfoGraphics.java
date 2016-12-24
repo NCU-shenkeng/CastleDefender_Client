@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import dom.CastleTable;
 import dom.DOM;
 import player.Player;
 import utils.ImageTool;
@@ -110,7 +111,7 @@ public class InfoGraphics extends Graph{
 	
 	public void drawSelfCastleInformation(Graphics g)
 	{
-		int bloodx=530;
+		int bloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getSelfCastleBlood()) > 99)?528:533;
 		int bloody=565;
 		int offset=45;
 		int itemx=305;
@@ -123,19 +124,22 @@ public class InfoGraphics extends Graph{
 		g.drawImage(selfinfo, 180, 525, 730,150, null);
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
 		g.setColor(new Color(220, 255, 200, 200));
-		g.drawString(Blood, bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
+		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
 		g.setColor(new Color(255, 255, 255, 200));
 		for(int i=0;i<11;i++)
 		{
-			int j = list[i]; //list[] 是dom提供的 改好把list刪掉拿dom的就好
-			int lefttime = time[i]; //time[] 同上 下面缺角跟圓算數學 time[]存要缺的角度 
+			int j = CastleTable.getCastleTable().getCastle().getCastleBuff()[i]; //list[] 是dom提供的 改好把list刪掉拿dom的就好
+			int lefttime = CastleTable.getCastleTable().getCastle().getCastleBuffCDR()[i]; //time[] 同上 下面缺角跟圓算數學 time[]存要缺的角度 
 			try
 			{
 				
 				g.drawImage(img[j],itemx,itemy,itemsize,itemsize,null);
 				
 				if(j!=0)
+				{
+					//System.out.println(String.format("cd %s %s",lefttime,fullcircle-lefttime));
 					g.fillArc(cdx,cdy, cdsize, cdsize, lefttime, fullcircle-lefttime);
+				}
 					
 				
 			}
@@ -149,7 +153,7 @@ public class InfoGraphics extends Graph{
 	}
 	public void drawEnemyCastleInformation(Graphics g)
 	{
-		int ebloodx=525;
+		int ebloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99)?521:526;
 		int ebloody=50;
 		int offset=45;
 		int eitemx=600;
@@ -159,12 +163,11 @@ public class InfoGraphics extends Graph{
 		
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
 		g.setColor(new Color(220, 255, 200, 200));
-		g.drawString(eBlood, ebloodx, ebloody); //eblood敵人城堡血量 同上
+		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody); //eblood敵人城堡血量 同上
 		g.setColor(new Color(255, 255, 255, 200));
 		for(int i=0;i<11;i++)
 		{
-			
-			int eitem = elist[i]; //elist[]敵人buff  DOM提供 待修改
+			int eitem = CastleTable.getCastleTable().getCastle().getEnemyCastleBuff()[i]; //elist[]敵人buff  DOM提供 待修改
 			try
 			{
 				g.drawImage(img[eitem],eitemx,eitemy,itemsize,itemsize,null);
