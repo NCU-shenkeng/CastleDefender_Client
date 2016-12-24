@@ -31,7 +31,7 @@ public class Character {
 		return currentHP;
 	}
 	public void setCurrentHP(int currentHP) {
-		this.currentHP += currentHP;
+		this.currentHP = currentHP;
 		if(this.currentHP <=0)this.currentHP =0;
 		if(this.currentHP >= maxHP) this.currentHP = maxHP;
 	}

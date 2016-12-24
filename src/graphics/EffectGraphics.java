@@ -20,7 +20,6 @@ private static EffectGraphics effectGraphics = null;
 	public void drawExplosion(Graphics g,Player player){
 		int x = player.getCordinateXInPanel();
 		int y = player.getCordinateYInPanel();
-		
 		g.drawImage(player.getSprite().getExplosionAnimation().getSprite(),
 				x-10,
 				y,

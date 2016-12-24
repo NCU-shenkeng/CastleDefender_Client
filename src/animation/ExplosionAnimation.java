@@ -16,7 +16,6 @@ public class ExplosionAnimation extends Animation{
 		setFrames(explosionFrame);
 	}
 	private void loadExplosionFrames(){
-		System.out.println(123);
 		File f = new File("images/explosion/");
 		for(File file : f.listFiles()){
 			explosionFrame.add(new Frame(ImageTool.toBufferedImage(file) , 7));

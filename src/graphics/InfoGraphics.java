@@ -102,7 +102,7 @@ public class InfoGraphics extends Graph{
 		
 		g.drawString(health,initX + 40, initY + 30); // health
 		g.drawString(attackpower,initX + 95, initY +30); // attack power
-		//if(self.IsDead())
+		if(self.getIsDead())
 			g.drawString(reviveTime, initX +145 , initY +30);
 		g.drawString(type, initX + 180, initY +30); // character type
 		

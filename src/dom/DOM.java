@@ -25,6 +25,10 @@ public class DOM {
 	public static void addPlayer(Player player){
 		PlayerTable.getPlayerTable().getTable().add(player);
 	}
+	public static void updatePlayerHealth(int number , int health){
+		Player player = getPlayer(number);
+		player.getCharacter().setCurrentHP(health);
+	}
 	public static void updatePlayerLocation(int number , int x , int y)
 	{
 		Player player = getPlayer(number);
@@ -44,6 +48,10 @@ public class DOM {
 		Player player = getPlayer(number);
 		player.getSprite().setPicking(bool);
 	}
+	public static void updatePlayerIsDamage(int number , boolean bool){
+		Player player = getPlayer(number);
+		player.getSprite().setIsDamage(bool);
+	}
 	public static void updatePlayerPickingLeftTime(int number , int leftTime){
 		Player player = getPlayer(number);
 		player.getSprite().setPickLeftTime(leftTime);
@@ -51,6 +59,17 @@ public class DOM {
 	public static void updatePlayerPickingFullTime(int number , int fullTime){
 		Player player = getPlayer(number);
 		player.getSprite().setPickFullTime(fullTime);
+	}
+	
+	public static void updatePlayerIsDead(int number , boolean isDead){
+		Player player = getPlayer(number);
+		player.getSprite().setAnimating(false);
+		player.setIsDead(isDead);
+		if(isDead) player.getCharacter().setCurrentHP(0);
+	}
+	public static void updatePlayerReviveTime(int number , int reviveTime){
+		Player player = getPlayer(number);
+		player.setReviveTime(reviveTime);
 	}
 	public static void AddItemByArrayList(ArrayList<Item> itemList)
 	{

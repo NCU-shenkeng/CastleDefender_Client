@@ -3,6 +3,7 @@ package sprite;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
 import java.util.EnumMap;
 
@@ -32,6 +33,7 @@ public class Sprite {
 	private ExplosionAnimation explosionAnimation;
 	private DirectionType facing;
 	private Map<DirectionType , BufferedImage> staticImage;
+	private BufferedImage deadImage;
 
 	
 	public Sprite(CharacterType type, int x, int y , DirectionType facing , int delay) {
@@ -41,6 +43,7 @@ public class Sprite {
 		setAnimation(type , facing , delay);
 		setStaticImage(type);
 		setExplosionAnimation();
+		setDeadImage();
 	}
 
 	private void setAnimation(CharacterType type , DirectionType facing , int delay)
@@ -76,6 +79,17 @@ public class Sprite {
 				this.staticImage = loadStaticImage(new File("images/character/ordinarypeople/static/"));
 				break;
 		}
+	}
+	private void setDeadImage(){
+		try {
+			this.deadImage = ImageTool.getImage("images/character/dead.png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public BufferedImage getDeadImage(){
+		return this.deadImage;
 	}
 	private Map<DirectionType , BufferedImage> loadStaticImage(File f)
 	{
