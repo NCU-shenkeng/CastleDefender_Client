@@ -152,6 +152,8 @@ public class CharacterGraphic extends Graph
 			self.getSprite().moveWest();
 		else if(Keyboard.getRight())
 			self.getSprite().moveEast();
+		else if(Keyboard.getSpace())
+			self.getSprite().attack();
 	}
 	
 }

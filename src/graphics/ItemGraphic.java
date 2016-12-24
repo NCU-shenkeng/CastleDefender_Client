@@ -10,6 +10,8 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import dom.DOM;
+import dom.ItemTable;
 import item.Item;
 import handler.ItemHandler;
 import item.ItemType;
@@ -34,13 +36,12 @@ public class ItemGraphic extends Graph
 			  							  "images/item/TRANSPORT.bmp"};
 	
 	//public Graphics g;
-	ItemHandler item = ItemHandler.getItemHandler();
 	BackgroundGraphics background = BackgroundGraphics.getGraph();
 	
 	private ItemGraphic()
 	{
 		OpenImge(img);
-		Test();
+		//Test();
 	}
 	
 	public static ItemGraphic getGraph()
@@ -59,7 +60,7 @@ public class ItemGraphic extends Graph
 	
 	public void paint(Graphics g)
 	{	
-		ArrayList<Item> itemList = item.getClientItem();
+		ArrayList<Item> itemList = ItemTable.getItemTable().getTable();
 		int blockSize = 100;
 		int lowerboundX = background.getBlockX() - background.getBlockOffsetX();
 		int upperboundX = background.getBlockX() + background.getBlockOffsetX();
@@ -132,7 +133,6 @@ public class ItemGraphic extends Graph
 //		tempitem.setType(random.nextInt(14));
 //		tempitem.setItemXY(tempXY);
 //		clientItem.add(tempitem);
-		
-		item.AddItemByArrayList(clientItem);
+		DOM.AddItemByArrayList(clientItem);
 	}
 }

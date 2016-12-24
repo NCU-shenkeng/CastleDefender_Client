@@ -19,7 +19,6 @@ public class CharacterAnimation extends Animation{
 	
 	private Map<DirectionType , List<Frame> > allMovingFrames= new EnumMap<DirectionType , List<Frame> >(DirectionType.class);
 	private Map<ActingType , List<Frame> > allActingFrames= new EnumMap<ActingType , List<Frame> >(ActingType.class);
-	private DirectionType test;
 	
 	public CharacterAnimation(DirectionType direction , String path , int delay){
 		super();
@@ -28,16 +27,8 @@ public class CharacterAnimation extends Animation{
     	loadMovingFrames(move);
     	loadActingFrames(act);
     	setFrame(direction);
-    	test = direction;
     	setDelay(delay);
     	init();
-	}
-	
-	@Override
-	public BufferedImage getSprite() {
-		// TODO Auto-generated method stub
-	//	System.out.println("direction: " + test + " currentFrame: " + currentFrame);
-		return super.getSprite();
 	}
 
     private void loadMovingFrames(File f)
@@ -84,6 +75,9 @@ public class CharacterAnimation extends Animation{
     			case attack:
     				allActingFrames.put(ActingType.attack, getFrames(directory));
     				break;
+    			case damage:
+    				allActingFrames.put(ActingType.damage, getFrames(directory));
+    				break;
     			case pick:
     				allActingFrames.put(ActingType.pick , getFrames(directory));
     				break;
@@ -117,7 +111,7 @@ public class CharacterAnimation extends Animation{
     
     public void setFrame(DirectionType direction)
     {
-    	test = direction;
+
     	switch(direction)
     	{
 	    	case north:
@@ -146,7 +140,7 @@ public class CharacterAnimation extends Animation{
 				break;
     	}
     }
-    protected void setFrame(ActingType action)
+    public void setFrame(ActingType action)
     {
     	switch(action)
     	{

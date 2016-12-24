@@ -3,6 +3,7 @@ package receiver;
 import java.awt.Event;
 import java.util.Vector;
 
+import handler.ItemHandler;
 import handler.PlayerHandler;
 import udp.Packet;
 import udp.ServerMessageDecoder;
@@ -34,8 +35,10 @@ public class UDPMessageDistributor {
 				case udp.Event.GAME_START:
 					break;
 				case udp.Event.MAP_ITEM_ADD:
+					ItemHandler.addItem(packet);
 					break;
 				case udp.Event.MAP_ITEM_REMOVE:
+					ItemHandler.removeItem(packet);
 					break;
 				case udp.Event.PLAYER_ATTACK:
 					break;
@@ -46,12 +49,13 @@ public class UDPMessageDistributor {
 				case udp.Event.PLAYER_INJURY:
 					break;
 				case udp.Event.PLAYER_ITEM_FAIL:
+					PlayerHandler.handlePickFail(packet);
 					break;
 				case udp.Event.PLAYER_ITEM_START:
+					PlayerHandler.handlePickStart(packet);
 					break;
 				case udp.Event.PLAYER_ITEM_SUCCESS:
 					break;
-					
 				case udp.Event.PLAYER_LOCATION_CHANGE:
 					PlayerHandler.handlerLocationChange(packet);
 					break;

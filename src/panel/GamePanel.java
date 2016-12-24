@@ -8,6 +8,7 @@ import java.net.Socket;
 import javax.swing.JPanel;
 
 import cfg.Keyboard;
+import cfg.Self;
 import cfg.Window;
 import dom.DOM;
 
@@ -57,17 +58,20 @@ public class GamePanel extends JPanel implements KeyListener {
 		{
 			case KeyEvent.VK_UP:
 				Keyboard.setUp(true);
-				DOM.getSelf().getCharacter().setCurrentHP(-1);
 				break;
 			case KeyEvent.VK_LEFT:
 				Keyboard.setLeft(true);
-				DOM.getSelf().getCharacter().setCurrentHP(1);
 				break;
 			case KeyEvent.VK_DOWN:
 				Keyboard.setDown(true);
 				break;
 			case KeyEvent.VK_RIGHT:
 				Keyboard.setRight(true);
+				break;
+			case KeyEvent.VK_A:
+				Keyboard.setSpace(true);
+				System.out.println("4,"+Integer.toString(Self.number));
+				TCPClient.getInstance().send("4,"+Integer.toString(Self.number));
 				break;
 			default:
 				break;
@@ -94,6 +98,12 @@ public class GamePanel extends JPanel implements KeyListener {
 			case KeyEvent.VK_RIGHT:
 				BackgroundGraphics.getGraph().Key[3] = 0;
 				Keyboard.setRight(false);
+				break;
+			case KeyEvent.VK_SPACE:
+				Keyboard.setSpace(false);
+				break;
+			case KeyEvent.VK_A:
+				Keyboard.setSpace(false);
 				break;
 			default:
 				break;

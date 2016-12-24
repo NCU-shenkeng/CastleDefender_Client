@@ -1,62 +1,23 @@
 package handler;
 
-import java.util.ArrayList;
+import dom.DOM;
 import item.Item;
+import udp.Packet;
 
 public class ItemHandler
 {
-	private static ItemHandler itemHandler;
-	private ArrayList<Item> clientItem = new ArrayList<Item>();
-	
-	private ItemHandler()
-	{		
-	}
-	
-	public static ItemHandler getItemHandler()
-	{
-		if (itemHandler == null)
-			itemHandler = new ItemHandler();
+	public static void addItem(Packet packet){
+		int type = Integer.parseInt(packet.getArgs().get(0));
+		int x = Integer.parseInt(packet.getArgs().get(1));
+		int y = Integer.parseInt(packet.getArgs().get(2));
 		
-		return itemHandler;
+		DOM.AddItemByElement(new Item(type , x , y));
 	}
 	
-	//TODO Input need to match server side
-	public void AddItemByArrayList(ArrayList<Item> itemList)
-	{
-		for (int i = 0; i < itemList.size(); i ++)
-		{
-			clientItem.add(itemList.get(i));
-		}
-	}
-	
-	public void AddItemByElement(Item item)
-	{
-		this.clientItem.add(item);
-	}	
-	
-	public void RemoveItemByArrayList(ArrayList<Item> itemList)
-	{
-		for (int i = 0; i < clientItem.size(); i ++)
-		{
-			for (int j = 0; j < itemList.size(); j ++)
-			{
-				if (clientItem.get(i) == itemList.get(j))
-					clientItem.remove(i);
-			}
-		}		
-	}
-	
-	public void RemoveItemByElement(Item item)
-	{
-		for (int i = 0; i < clientItem.size(); i++)
-		{
-			if (clientItem.get(i) == item)
-				clientItem.remove(i);
-		}
-	}
-	
-	public ArrayList<Item> getClientItem()
-	{
-		return clientItem;
+	public static void removeItem(Packet packet){
+		int x = Integer.parseInt(packet.getArgs().get(0));
+		int y = Integer.parseInt(packet.getArgs().get(1));
+		
+		DOM.RemoveItemByElement(x, y);
 	}
 }
