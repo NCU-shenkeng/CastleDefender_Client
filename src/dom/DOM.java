@@ -2,9 +2,12 @@ package dom;
 
 import java.util.ArrayList;
 
+import castle.Castle;
 import cfg.DirectionType;
 import cfg.Self;
 import graphics.BackgroundGraphics;
+import handler.CastleHandler;
+import handler.CastleHandler.buffArray;
 import item.Item;
 import player.Player;
 
@@ -108,4 +111,51 @@ public class DOM {
 				list.remove(i);
 		}
 	}
+	
+	public static void UpdateCasltleBuffList(int index,ArrayList<CastleHandler.buffArray> args){
+		try {
+			Castle castle = CastleTable.getCastleTable().getCastle();
+			
+			int buffID[] = new int[11];
+			int CDR[] = new int[11];
+			for (int i = 0; (i < args.size()) && (i < 11); i++) {
+				buffID[i] = args.get(i).typeID;
+				CDR[i] = ((args.get(i).fulltime - args.get(i).time) * 360) / args.get(i).fulltime;
+			}
+//			System.out.print(String.format("Self %s index %s :", Self.team, index));
+//			for (int i : buffID) {
+//				System.out.print(i + " ");
+//			}
+//			System.out.print("\n");
+			
+			if(Self.team == index){
+//				System.out.println("Self casle");
+				castle.setCastleBuff(buffID);
+				castle.setCastleBuffCDR(CDR);
+			}else{
+//				System.out.println("Enemy casle");
+				castle.setEnemyCastleBuff(buffID);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void UpdateCastleBlood(int index,String args) {
+		try {
+			Castle castle = CastleTable.getCastleTable().getCastle();
+			
+			if(Self.team == index){
+				System.out.println("Self casle " + args);
+				castle.setSelfCastleBlood(args);
+			}else{
+				System.out.println("Enemy casle " + args);
+				castle.setEnemyCastleBlood(args);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
