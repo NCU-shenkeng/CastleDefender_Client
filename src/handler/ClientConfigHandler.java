@@ -5,7 +5,6 @@ import dom.EngineTable;
 import main.GameFrame;
 import panel.LosePanel;
 import panel.WinPanel;
-import render.GameEngine;
 import udp.Packet;
 
 public class ClientConfigHandler 
