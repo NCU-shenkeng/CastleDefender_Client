@@ -6,6 +6,7 @@ public class Castle {
 	String Self_Castle_Blood="300";
 	int[] SelfCastleBuff = new int[11];
 	int[] SelfCastleBuffCDR = new int[11];
+	int[] EnemyCastleBuffCDR = new int[11];
 	int [] EnemyCastleBuff = new int[11];
 	
 	public Castle()
@@ -61,7 +62,17 @@ public class Castle {
 	{
 		return SelfCastleBuffCDR;
 	}
-	
+	public void setEnemyBuffCDR(int cd[])
+	{
+		for(int i = 0; i <= 10 ;i++)
+		{
+			EnemyCastleBuffCDR[i] = cd[i];
+		}
+	}
+	public int[] getEnemyBuffCDR()
+	{
+		return EnemyCastleBuffCDR;
+	}
 }
 
 

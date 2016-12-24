@@ -36,7 +36,7 @@ public class InfoGraphics extends Graph{
 	
 	private void OpenImge (BufferedImage img[])
 	{
-		String path[] = {"images/item/null.png",
+		String path[] = {
 						 "images/item/ATTACKSPEED1.bmp",
 				  		 "images/item/ATTACKSPEED2.bmp",
 				  		 "images/item/ATTACKSPEED3.bmp",
@@ -50,7 +50,8 @@ public class InfoGraphics extends Graph{
 				  		 "images/item/SHIELD2.bmp",
 				  		 "images/item/SHIELD3.bmp",
 				  		 "images/item/STEALING.bmp",
-						 "images/item/TRANSPORT.bmp"};
+						 "images/item/TRANSPORT.bmp",
+				  		 "images/item/null.png"};
 		File origFile;
 		for (int i = 0; i < path.length; i++)
 		{
@@ -133,10 +134,11 @@ public class InfoGraphics extends Graph{
 			try
 			{
 				
-				g.drawImage(img[j],itemx,itemy,itemsize,itemsize,null);
-				
-				if(j!=0)
+
+				if(lefttime  > 0)
 				{
+					g.drawImage(img[j],itemx,itemy,itemsize,itemsize,null);
+				
 					//System.out.println(String.format("cd %s %s",lefttime,fullcircle-lefttime));
 					g.fillArc(cdx,cdy, cdsize, cdsize, lefttime, fullcircle-lefttime);
 				}
@@ -168,8 +170,10 @@ public class InfoGraphics extends Graph{
 		for(int i=0;i<11;i++)
 		{
 			int eitem = CastleTable.getCastleTable().getCastle().getEnemyCastleBuff()[i]; //elist[]敵人buff  DOM提供 待修改
+			int lefttime = CastleTable.getCastleTable().getCastle().getEnemyBuffCDR()[i];
 			try
 			{
+				if(lefttime > 0)
 				g.drawImage(img[eitem],eitemx,eitemy,itemsize,itemsize,null);
 			}
 			catch(Exception e)

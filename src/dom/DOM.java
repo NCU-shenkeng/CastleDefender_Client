@@ -135,6 +135,7 @@ public class DOM {
 			}else{
 //				System.out.println("Enemy casle");
 				castle.setEnemyCastleBuff(buffID);
+				castle.setEnemyBuffCDR(CDR);
 			}
 			
 		} catch (Exception e) {
