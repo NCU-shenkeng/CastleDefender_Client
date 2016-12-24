@@ -18,7 +18,8 @@ import background.Map;
 import cfg.Self;
 import main.GameFrame;
 import player.Player;
-public class BackgroundGraphics extends Graph implements ActionListener{
+public class BackgroundGraphics extends Graph
+{
 
 	public Graphics g;
 	private int BlockX;
@@ -76,6 +77,10 @@ public class BackgroundGraphics extends Graph implements ActionListener{
 			this.BlockY = BlockY + offsetY;
 		}
 
+	}
+	
+	public boolean canPass(int x , int y){
+		return map.scene[x][y].canPass;
 	}
 	
 	public void paint(Graphics g)
@@ -167,23 +172,4 @@ public class BackgroundGraphics extends Graph implements ActionListener{
 			}			
 		}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		if(walkCD > 0)
-		{
-			walkCD -= 10;
-		}
-		else
-		{
-			if(Key[1] + Key[3] + Key[0] + Key[2] != 0)
-			{
-				SetBlockValue((Key[1] * -1)+(Key[3]), (Key[0] * -1)+(Key[2]));
-				walkCD += walkDelay;
-			}
-		}
-
-	}
-
 }

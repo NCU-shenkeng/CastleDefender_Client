@@ -34,7 +34,7 @@ public class Parser {
 		switch(character)
 		{
 		case Mage:
-			return "ªk®v";
+			return "½åªÌ";
 		case Guard:
 			return "¨Í½Ã";
 		case OrdinaryPeople:
@@ -46,4 +46,30 @@ public class Parser {
 	public static String toString(int input){
 		return Integer.toString(input);
 	}
+	public static int directionToInt(DirectionType direction){
+		switch(direction)
+		{
+			case north:
+				return 0;
+			case north_west:
+				return 1;
+			case west:
+				return 2;
+			case south_west:
+				return 3;
+			case south:
+				return 4;
+			case south_east:
+				return 5;
+			case east:
+				return 6;
+			case north_east:
+				return 7;
+		}
+		return -1;
+	}
+	public static int parseBoolean(boolean bool){
+		return (bool ? 1 : 0);
+	}
+
 }

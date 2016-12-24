@@ -12,10 +12,11 @@ public abstract class Engine implements Runnable
 	private long ms = 1000 / fps;
 	
 	protected BufferedImage buffer;
-
+	protected BufferedImage doneImage;
 	public Engine()
 	{
 		buffer = new BufferedImage(Window.WIDTH, Window.HEIGHT,BufferedImage.TYPE_INT_ARGB);
+		doneImage = buffer;
 	}
 	
 	@Override
@@ -48,5 +49,8 @@ public abstract class Engine implements Runnable
 	}
 	public void stop(){
 		this.running = false;
+	}
+	public BufferedImage getBuffer(){
+		return doneImage;
 	}
 }

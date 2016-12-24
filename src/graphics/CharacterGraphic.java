@@ -11,10 +11,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
+
+import cfg.Keyboard;
 import cfg.Self;
 import dom.DOM;
 import dom.PlayerTable;
 import player.Player;
+import render.SpriteEngine;
 import utils.ImageTool;
 import utils.Parser;
 
@@ -31,22 +35,15 @@ public class CharacterGraphic extends Graph
 		}
 		return characterGraphic;
 	}
-	private  CharacterGraphic() {
-		try {
-			info = ImageTool.getImage("images/info_bar.png");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	private  CharacterGraphic() {}
 
 	@Override
 	public void paint(Graphics g) {
 	}
 	
 	public void drawStaticPlayer(Graphics g , Player player)
-	{
-		this.drawPlayer(g, player, player.getSprite().getStaticImage());
+	{	if(player.equals(DOM.getSelf()))
+			this.drawPlayer(g, player, player.getSprite().getStaticImage());
 	}
 	
 	public void drawAnimatingPlayer(Graphics g ,Player player)
@@ -57,13 +54,15 @@ public class CharacterGraphic extends Graph
 			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); // draw other
 		}
 		else 
+		{
+			setSelf();
 			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); //draw self
+		}
 	}
 	private void drawPlayer(Graphics g , Player player , BufferedImage image)
 	{
 		drawFigure(g, player, image);
 		drawHealth(g, player);
-		drawInformation(g);
 	}
 	private void drawFigure(Graphics g , Player player , BufferedImage image){
 		if(player.getNumber() == Self.number)//draw self
@@ -101,29 +100,10 @@ public class CharacterGraphic extends Graph
 		    		y+100,
 		    		x+(health*player.getCharacter().getCurrentHP()),
 		    		y+100);  
-		/*g2.setStroke(new BasicStroke(1));
+		g2.setStroke(new BasicStroke(2));
 		g2.setColor(Color.WHITE);
-		g2.drawRect(x, y + 100, 100, 5);*/
+		g2.drawRect(x-5, y + 97, 108, 6);
 		
-	}
-	private void drawInformation(Graphics g){
-			g.drawImage(info, 0,0,250,50,null);
-			g.setColor(Color.white);
-			g.setFont(new Font("TimesRoman", Font.BOLD,15));
-			
-			
-			Player self = DOM.getSelf();
-			String health = Parser.toString(self.getCharacter().getCurrentHP());
-			String attackpower = Parser.toString(self.getCharacter().getAttackPower());
-			String type = Parser.parseCharacterToChinese(self.getCharacter().getType());
-			String reviveTime = Parser.toString(self.getReviveTime());
-			
-			g.drawString(health,40, 30); // health
-			g.drawString(attackpower,95, 30); // attack power
-			//if(self.IsDead())
-				g.drawString(reviveTime, 145 , 30);
-			g.drawString(type, 180, 30); // character type
-			
 	}
 	private void setPlayerMovingFrame(Player player){
 		switch(player.getSprite().getFacing())
@@ -154,7 +134,25 @@ public class CharacterGraphic extends Graph
 			break;
 		}
 	}
-	
+	private void setSelf(){
+		Player self = DOM.getSelf();
+		if(Keyboard.getDownLeft())
+			self.getSprite().moveSouthWest();
+		else if(Keyboard.getDownRight())
+			self.getSprite().moveSouthEast();
+		else if(Keyboard.getUpLeft())
+			self.getSprite().moveNorthWest();
+		else if(Keyboard.getUpRightt())
+			self.getSprite().moveNorthEast();
+		else if(Keyboard.getUp())
+			self.getSprite().moveNorth();
+		else if(Keyboard.getDown())
+			self.getSprite().moveSouth();
+		else if(Keyboard.getLeft())
+			self.getSprite().moveWest();
+		else if(Keyboard.getRight())
+			self.getSprite().moveEast();
+	}
 	
 }
 
