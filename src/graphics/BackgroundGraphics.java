@@ -18,7 +18,7 @@ import background.Map;
 import cfg.Self;
 import main.GameFrame;
 import player.Player;
-public class BackgroundGraphics extends Graph implements KeyListener, ActionListener{
+public class BackgroundGraphics extends Graph{
 
 	public Graphics g;
 	private int BlockX;
@@ -67,6 +67,10 @@ public class BackgroundGraphics extends Graph implements KeyListener, ActionList
 			this.BlockY = BlockY + offsetY;
 		}
 
+	}
+	
+	public boolean canPass(int x , int y){
+		return map.scene[x][y].canPass;
 	}
 	
 	public void paint(Graphics g)
@@ -168,86 +172,6 @@ public class BackgroundGraphics extends Graph implements KeyListener, ActionList
 		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) 
-	{
-		switch (arg0.getKeyCode())
-		{
-			case KeyEvent.VK_UP:
-				//SetBlockValue(0, -1);
-				Key[0] = 1;
-			try {
-				GameFrame.getGame().refresh();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				break;
-			case KeyEvent.VK_LEFT:
-				//SetBlockValue(-1, 0);
-				Key[1] = 1;
-				break;
-			case KeyEvent.VK_DOWN:
-				//SetBlockValue(0, 1);
-				Key[2] = 1;
-				break;
-			case KeyEvent.VK_RIGHT:
-				//SetBlockValue(1, 0);
-				Key[3] = 1;
-				break;
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0)
-	{
-		switch (arg0.getKeyCode())
-		{
-			case KeyEvent.VK_UP:
-				//SetBlockValue(0, -1);
-				Key[0] = 0;
-				break;
-			case KeyEvent.VK_LEFT:
-				//SetBlockValue(-1, 0);
-				Key[1] = 0;
-				break;
-			case KeyEvent.VK_DOWN:
-				//SetBlockValue(0, 1);
-				Key[2] = 0;
-				break;
-			case KeyEvent.VK_RIGHT:
-				//SetBlockValue(1, 0);
-				Key[3] = 0;
-				break;
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		if(walkCD > 0)
-		{
-			walkCD -= 10;
-		}
-		else
-		{
-			if(Key[1] + Key[3] + Key[0] + Key[2] != 0)
-			{
-				SetBlockValue((Key[1] * -1)+(Key[3]), (Key[0] * -1)+(Key[2]));
-				walkCD += walkDelay;
-			}
-		}
-
-	}
+	
 
 }

@@ -34,6 +34,19 @@ public class Keyboard {
 		return (DOWN);
 	}
 	
+	public static int getUpInt(){
+		return UP ? 1 : 0;
+	}
+	public static int getLeftInt(){
+		return LEFT ? 1 : 0;
+	}
+	public static int getDownInt(){
+		return DOWN ? 1 : 0;
+	}
+	public static int getRightInt(){
+		return RIGHT ? 1 : 0;
+	}
+	
 	public static void setLeft(boolean b){
 		LEFT = b;
 	}

@@ -3,8 +3,7 @@ package panel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-
+import java.net.Socket;
 
 import javax.swing.JPanel;
 
@@ -14,6 +13,8 @@ import dom.DOM;
 
 import graphics.BackgroundGraphics;
 import receiver.MessageReceiver;
+import tcp.IReceive;
+import tcp.TCPClient;
 import udp.Server;
 
 public class GamePanel extends JPanel implements KeyListener {
@@ -30,8 +31,20 @@ public class GamePanel extends JPanel implements KeyListener {
 		this.addKeyListener(this);
 		receiver = new MessageReceiver();
 		
-		Server.initUDPServer(); // run the client
-		Server.getUDPUS().setReceiveAction(receiver); // regist receiver
+		//Server.initUDPServer(); // run the client
+		//Server.getUDPUS().setReceiveAction(receiver); // regist receiver
+
+		//TCPClient.getInstance().initTCPClient();
+		/*TCPClient.getInstance().registReceiveAction(new IReceive() {
+			
+			@Override
+			public void onReceive(String msg) {
+				System.out.println(msg);
+			}
+			
+			@Override
+			public void afterReceive(Socket client) {}
+		});*/
 	}
 	
 	public static GamePanel getGame(){
@@ -51,21 +64,17 @@ public class GamePanel extends JPanel implements KeyListener {
 		switch (arg0.getKeyCode())
 		{
 			case KeyEvent.VK_UP:
-				BackgroundGraphics.getGraph().Key[0] = 1;
 				Keyboard.setUp(true);
 				DOM.getSelf().getCharacter().setCurrentHP(-1);
 				break;
 			case KeyEvent.VK_LEFT:
-				BackgroundGraphics.getGraph().Key[1] = 1;
 				Keyboard.setLeft(true);
 				DOM.getSelf().getCharacter().setCurrentHP(1);
 				break;
 			case KeyEvent.VK_DOWN:
-				BackgroundGraphics.getGraph().Key[2] = 1;
 				Keyboard.setDown(true);
 				break;
 			case KeyEvent.VK_RIGHT:
-				BackgroundGraphics.getGraph().Key[3] = 1;
 				Keyboard.setRight(true);
 				break;
 			default:
