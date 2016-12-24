@@ -35,7 +35,15 @@ public class BackgroundGraphics extends Graph
 			 					   "images/backgound/FLOOR1.bmp",
 			 					   "images/backgound/FLOOR2.bmp",
 			 					   "images/backgound/DRAIN.bmp",
-			 					   "images/backgound/CASTLE.bmp"};
+			 					   "images/backgound/CASTLE1.bmp",
+			 					   "images/backgound/CASTLE2.bmp",
+			 					   "images/backgound/CASTLE3.bmp",
+			 					   "images/backgound/CASTLE4.bmp",
+			 					   "images/backgound/CASTLE5.bmp",
+			 					   "images/backgound/CASTLE6.bmp",
+			 					   "images/backgound/CASTLE7.bmp",
+			 					   "images/backgound/CASTLE8.bmp",
+			 					   "images/backgound/CASTLE9.bmp"};
 	
 	int userViewWidth = 1100;
 	int userViewHigh = 700;
@@ -95,7 +103,10 @@ public class BackgroundGraphics extends Graph
 		{
 		  for (int j = BlockY - blockhighOffset; j <= BlockY + blockhighOffset; j++)
 		  {
-			  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
+			  if (map.scene[i][j].type >= BasicBlockType.CASTLE1)
+				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
+			  else
+				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
 			  
 			  userviewY = userviewY + blockSize;
 		  }
@@ -150,7 +161,7 @@ public class BackgroundGraphics extends Graph
 	private void InitLocation()
 	{
 		this.BlockX = 4 + 9;
-		this.BlockY = 3 + 46;		
+		this.BlockY = 3 + 45;		
 	}
 	
 	private void OpenImge (BufferedImage img[])
