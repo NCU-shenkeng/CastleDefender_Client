@@ -57,7 +57,7 @@ public class SceneEngine extends Engine{
 										   utils.Parser.parseBoolean(DOM.getSelf().getSprite().getIsAnimating()));
 			System.out.println(sendMsg);
 			
-			//TCPClient.getInstance().send(sendMsg);
+			TCPClient.getInstance().send(sendMsg);
 
 	}
 }

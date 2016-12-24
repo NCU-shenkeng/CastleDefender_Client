@@ -31,11 +31,11 @@ public class GamePanel extends JPanel implements KeyListener {
 		this.addKeyListener(this);
 		receiver = new MessageReceiver();
 		
-		//Server.initUDPServer(); // run the client
-		//Server.getUDPUS().setReceiveAction(receiver); // regist receiver
+		Server.initUDPServer(); // run the client
+		Server.getUDPUS().setReceiveAction(receiver); // regist receiver
 
-		//TCPClient.getInstance().initTCPClient();
-		/*TCPClient.getInstance().registReceiveAction(new IReceive() {
+		TCPClient.getInstance().initTCPClient();
+		TCPClient.getInstance().registReceiveAction(new IReceive() {
 			
 			@Override
 			public void onReceive(String msg) {
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements KeyListener {
 			
 			@Override
 			public void afterReceive(Socket client) {}
-		});*/
+		});
 	}
 	
 	public static GamePanel getGame(){
