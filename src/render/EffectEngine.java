@@ -1,8 +1,11 @@
 package render;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import cfg.Self;
 import cfg.Window;
 import dom.DOM;
 import graphics.EffectGraphics;
@@ -12,21 +15,28 @@ public class EffectEngine extends Engine{
 	
 
 	public EffectEngine() {
+		setFPS(500);
 	}
 	
 	@Override
 	public void tick() {
 		update();
 	}
-
 	@Override
 	public void render() {
 		buffer = new BufferedImage(Window.WIDTH, Window.HEIGHT,BufferedImage.TYPE_INT_ARGB);
 		Graphics graphics = buffer.getGraphics();
 		for(Player player : DOM.getPlayerTable())
 		{
-			if(player.getSprite().getIsDamage()){
-				EffectGraphics.getGraphic().drawExplosion(graphics,player);
+			if(player.getSprite().getIsDamage())
+			{
+				Self.nowTime = System.currentTimeMillis();
+				if(Self.nowTime - Self.lastTime < 300)
+					EffectGraphics.getGraphic().drawExplosion(graphics, player);
+				else{
+					player.getSprite().setIsDamage(false);
+				}
+					
 			}
 			if(player.getSprite().getIsPicking()){
 				EffectGraphics.getGraphic().drawPick(graphics, 
@@ -52,4 +62,5 @@ public class EffectEngine extends Engine{
 			}
 		}
 	}
+
 }

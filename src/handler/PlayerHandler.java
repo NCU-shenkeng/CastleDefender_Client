@@ -4,6 +4,7 @@ import cfg.DirectionType;
 import cfg.Self;
 import dom.DOM;
 import graphics.EffectGraphics;
+import panel.GamePanel;
 import udp.Packet;
 
 import utils.Parser;
@@ -46,5 +47,31 @@ public class PlayerHandler
 		DOM.updatePlayerIsPicking(number, false);
 		
 	}
+	public static void handleHealthChange(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		int health = Integer.parseInt(packet.getArgs().get(1));
+		
+		DOM.updatePlayerHealth(number, health);
+	}
+	public static void handleDead(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		int reviveTime = Integer.parseInt(packet.getArgs().get(1));
+		
+		DOM.updatePlayerIsDead(number, true);
+		DOM.updatePlayerReviveTime(number, reviveTime);
+		GamePanel.getGame().removeKeyListener(GamePanel.getGame());
+	}
 	
+	public static void handleInjury(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		DOM.updatePlayerIsDamage(number, true);
+		
+		Self.lastTime = System.currentTimeMillis();
+	}
+	public static void handleRevive(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		
+		DOM.updatePlayerIsDead(number, false);
+		GamePanel.getGame().addKeyListener(GamePanel.getGame());
+	}
 }
