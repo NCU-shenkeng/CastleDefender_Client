@@ -27,7 +27,7 @@ public class DOM {
 	}
 	public static void addPlayer(Player player){
 		if(!PlayerTable.getPlayerTable().isExist(player.getNumber()))
-			PlayerTable.getPlayerTable().getTable().add(player.getNumber(),player);
+			PlayerTable.getPlayerTable().getTable().add(player);
 	}
 	public static void updatePlayerHealth(int number , int health){
 		Player player = getPlayer(number);
@@ -160,6 +160,8 @@ public class DOM {
 		}
 	}
 	public static void reset(){
+		Self.number = 0;
+		Self.team = 0;
 		CastleTable.getCastleTable().reset();
 		ItemTable.getItemTable().reset();
 		PlayerTable.getPlayerTable().reset();

@@ -7,7 +7,7 @@ import player.Player;
 public class PlayerTable
 {
 	private static PlayerTable playerTable = null;
-	private static ArrayList<Player> table = new ArrayList<Player>();
+	private static ArrayList<Player> table = new ArrayList<Player>(4);
 	
 	public static PlayerTable getPlayerTable()
 	{

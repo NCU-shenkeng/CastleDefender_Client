@@ -39,7 +39,7 @@ public class ClientConfigHandler
 		
 		GameEngine.getEngine().stopEngine();
 		try {
-			Thread.sleep(20);
+			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

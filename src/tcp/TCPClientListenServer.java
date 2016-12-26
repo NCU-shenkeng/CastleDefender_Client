@@ -31,7 +31,7 @@ public class TCPClientListenServer implements Runnable{
 		{
 			try 
 			{
-				if(socket.isConnected()){
+				if(!socket.isClosed()){
 					String msg = input.readUTF();
 					TCPClient.getInstance().onReceive(msg);
 				}
@@ -40,7 +40,7 @@ public class TCPClientListenServer implements Runnable{
 					break;
 				}
 			} catch (IOException e) {
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 		
 		}

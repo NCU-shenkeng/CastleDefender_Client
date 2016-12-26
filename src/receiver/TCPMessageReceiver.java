@@ -17,7 +17,6 @@ public class TCPMessageReceiver implements IReceive{
 	
 	@Override
 	public void onReceive(String msg) {
-			//System.out.println(msg);
 			distributor.distributeMessage(msg);
 	}
 

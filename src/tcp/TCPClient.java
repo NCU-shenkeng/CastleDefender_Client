@@ -115,6 +115,5 @@ public class TCPClient{
 	
 	public void reset(){
 		stopListen();
-		instance = null;
 	}
 }

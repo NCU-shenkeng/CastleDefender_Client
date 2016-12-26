@@ -3,6 +3,7 @@ package receiver;
 
 import java.util.Vector;
 
+import cfg.Keyboard;
 import dom.DOM;
 import handler.CastleHandler;
 import handler.ClientConfigHandler;
@@ -39,6 +40,7 @@ public class UDPMessageDistributor {
 				case udp.Event.GAME_OVER:
 					ClientConfigHandler.setWinnerOrLoser(packet);
 					ClientConfigHandler.closeGame();
+					Keyboard.reset();
 					break;
 				case udp.Event.GAME_START:
 					ClientConfigHandler.startGame();
@@ -79,7 +81,6 @@ public class UDPMessageDistributor {
 					ClientConfigHandler.addPlayer(packet);
 					break;
 				case udp.Event.PLAYER_TELEPORT:
-					//System.out.println("teleport :¡@" + packet.getArgs().get(0));
 					ClientConfigHandler.initPlayerLocation(packet);
 					break;
 			}
