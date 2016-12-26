@@ -89,7 +89,7 @@ public class InfoGraphics extends Graph{
 	public void drawPlayerInformation(Graphics g)
 	{
 		int initX = 0;
-		int initY = 611;
+		int initY = 0;
 		
 		g.drawImage(info, initX,initY,250,50,null);
 		g.setColor(Color.white);
@@ -113,16 +113,16 @@ public class InfoGraphics extends Graph{
 	public void drawSelfCastleInformation(Graphics g)
 	{
 		int bloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getSelfCastleBlood()) > 99)?528:533;
-		int bloody=565;
+		int bloody=605;
 		int offset=45;
 		int itemx=305;
-		int itemy=607;
+		int itemy=647;
 		int cdx=312;
-		int cdy=615;
+		int cdy=655;
 		int fullcircle = 360;
 		int itemsize=30;
 		int cdsize=20;
-		g.drawImage(selfinfo, 180, 525, 730,150, null);
+		g.drawImage(selfinfo, 180, 565, 730,150, null);
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
 		g.setColor(new Color(220, 255, 200, 200));
 		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
@@ -155,13 +155,13 @@ public class InfoGraphics extends Graph{
 	}
 	public void drawEnemyCastleInformation(Graphics g)
 	{
-		int ebloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99)?521:526;
+		int ebloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99)?531:536;
 		int ebloody=50;
 		int offset=45;
 		int eitemx=600;
 		int eitemy=15;
 		int itemsize=30;
-		g.drawImage(enemyinfo, 360, 0, 730,150, null);
+		g.drawImage(enemyinfo, 370, 0, 730,150, null);
 		
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
 		g.setColor(new Color(220, 255, 200, 200));

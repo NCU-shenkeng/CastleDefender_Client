@@ -1,11 +1,23 @@
 
 package handler;
 
+import java.io.IOException;
+
+import javax.swing.text.html.parser.Parser;
+
+import cfg.DirectionType;
 import cfg.Self;
+import character.CharacterType;
+import dom.DOM;
 import dom.EngineTable;
+import graphics.BackgroundGraphics;
 import main.GameFrame;
+import panel.GamePanel;
 import panel.LosePanel;
 import panel.WinPanel;
+import player.Player;
+import render.Engine;
+import render.GameEngine;
 import udp.Packet;
 
 public class ClientConfigHandler 
@@ -19,9 +31,10 @@ public class ClientConfigHandler
 	
 	}
 	
+	
 	public static void setWinnerOrLoser(Packet packet){
 		
-		EngineTable.stopAllEngine();
+		GameEngine.getEngine().stopEngine();
 		int number = Integer.parseInt(packet.getArgs().get(0));
 		try
 		{
@@ -34,5 +47,37 @@ public class ClientConfigHandler
 			
 		}			
 	}
-	
+	public static void addPlayer(Packet packet)
+	{
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		int team = Integer.parseInt(packet.getArgs().get(1));
+		CharacterType type = utils.Parser.parseCharacterType(Integer.parseInt(packet.getArgs().get(2)));
+		
+		DOM.addPlayer(new Player(number, type, team, 50, 11));
+	}
+	public static void initPlayerLocation(Packet packet){
+		int number = Integer.parseInt(packet.getArgs().get(0));
+		int x = Integer.parseInt(packet.getArgs().get(1));
+		int y = Integer.parseInt(packet.getArgs().get(2));
+		DirectionType facing = utils.Parser.parseDirection(packet.getArgs().get(3));
+		
+		
+		BackgroundGraphics.getGraph().setBlockX(x);
+		BackgroundGraphics.getGraph().setBlockY(y);
+		DOM.updatePlayerLocation(number, x, y);
+		DOM.updatePlayerFacing(number, facing);
+	}
+	public static void startGame(){
+		try 
+		{
+			GameFrame.getGame().changeScreen(GamePanel.getGame());
+			GameEngine.getEngine().start();
+			GameEngine.getEngine().startEngine();
+			EngineTable.engineTable.get(3).stop();
+			new Thread(GameEngine.getEngine()).start();
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
 }

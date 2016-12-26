@@ -10,7 +10,9 @@ import cfg.Self;
 import cfg.Window;
 import dom.DOM;
 import graphics.BackgroundGraphics;
+import graphics.ItemGraphic;
 import tcp.TCPClient;
+import utils.MessageBuilder;
 
 public class SceneEngine extends Engine{
 
@@ -20,7 +22,7 @@ public class SceneEngine extends Engine{
 	
 	public SceneEngine() {
 		this.graph = BackgroundGraphics.getGraph();
-		setFPS(3);
+		setFPS((int)(DOM.getSelf().getCharacter().getSpeed()*2));
 	}
 	
 	@Override
@@ -33,6 +35,9 @@ public class SceneEngine extends Engine{
 		BufferedImage buffer = new BufferedImage(Window.WIDTH, Window.HEIGHT,BufferedImage.TYPE_3BYTE_BGR);
 		Graphics g = buffer.getGraphics();
 		graph.paint(g);
+		
+		ItemGraphic.getGraph().paint(g);
+
 		doneImage = buffer;
 		buffer = null;
 	}
@@ -49,14 +54,6 @@ public class SceneEngine extends Engine{
 				DOM.getSelf().getSprite().setXY(DOM.getSelf().getSprite().getX() + xOffset , 
 												DOM.getSelf().getSprite().getY() + yOffset);
 			}
-			String sendMsg = String.format("3,%d,%d,%d,%d,%d", 
-										   Self.number , 
-										   DOM.getSelf().getSprite().getX() ,
-										   DOM.getSelf().getSprite().getY() ,
-										   utils.Parser.directionToInt(DOM.getSelf().getSprite().getFacing()),
-										   utils.Parser.parseBoolean(DOM.getSelf().getSprite().getIsAnimating()));
-			//System.out.println(sendMsg);
-			
-			TCPClient.getInstance().send(sendMsg);
+			TCPClient.getInstance().send(MessageBuilder.location());
 	}
 }

@@ -8,7 +8,7 @@ import cfg.Window;
 public abstract class Engine implements Runnable
 {
 	
-	private boolean running = true;
+	private boolean running = false;
 	private long fps = 60;
 	private long ms = 1000 / fps;
 	
@@ -31,9 +31,9 @@ public abstract class Engine implements Runnable
 			if(lastTime + ms <= now){
 				lastTime = now;
 				tick();
+				if(running)	
+					render();
 			}
-			if(running)	
-				render();
 		}
 	}
 	
@@ -50,6 +50,9 @@ public abstract class Engine implements Runnable
 	}
 	public void stop(){
 		this.running = false;
+	}
+	public void start(){
+		this.running = true;
 	}
 	public BufferedImage getBuffer(){
 		return doneImage;

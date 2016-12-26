@@ -53,7 +53,6 @@ public class SpriteEngine extends Engine{
 				player.getSprite().getAnimation().stop();
 		}
 		checkSelfIsKeyboardDown();
-	
 	}
 	
 	public void checkSelfIsKeyboardDown(){

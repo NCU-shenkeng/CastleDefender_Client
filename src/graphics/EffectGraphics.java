@@ -34,9 +34,6 @@ private static EffectGraphics effectGraphics = null;
 		int x = player.getCordinateXInPanel()+30;
 		int y = player.getCordinateYInPanel()-20;
 		
-		//fullTime /= 1000;
-		//leftTime /= 1000;
-		
 		int startAngle = ((fullTime - leftTime) * 360) / fullTime;
 		int endAngle = 360 - startAngle;
 		

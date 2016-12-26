@@ -1,4 +1,3 @@
-
 package render;
 
 import java.awt.Color;
@@ -9,9 +8,12 @@ import java.io.IOException;
 import cfg.Window;
 import dom.EngineTable;
 import panel.GamePanel;
+import receiver.UDPMessageReceiver;
+import udp.Server;
 import utils.ImageTool;
 public class GameEngine extends Engine{
 
+	private static GameEngine instance;
 	
 	Thread scene;
 	Thread sprite;
@@ -25,7 +27,8 @@ public class GameEngine extends Engine{
 	InfoEngine infoEngine;
 	EffectEngine effectEngine;
 
-	public GameEngine(){
+	
+	private GameEngine(){
 		
 			sceneEngine = new SceneEngine();
 			spriteEngine = new SpriteEngine();
@@ -38,7 +41,6 @@ public class GameEngine extends Engine{
 			EngineTable.engineTable.add(itemEngine);
 			EngineTable.engineTable.add(infoEngine);
 			EngineTable.engineTable.add(effectEngine);
-			EngineTable.engineTable.add(this);
 			
 			scene = new Thread(sceneEngine);
 			sprite = new Thread(spriteEngine);
@@ -46,17 +48,25 @@ public class GameEngine extends Engine{
 			info = new Thread(infoEngine);
 			effect = new Thread(effectEngine);
 			
-			
 			scene.start();
 			sprite.start();
 			item.start();
 			info.start();
 			effect.start();
+
 	}
 	
+	
+	public static GameEngine getEngine(){
+		if(instance == null){
+			synchronized (GameEngine.class) {
+				instance = new GameEngine();
+			}
+		}
+		return instance;
+	}
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -82,8 +92,12 @@ public class GameEngine extends Engine{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
-
+	
+	public void startEngine(){
+		EngineTable.startAllEngine();
+	}
+	public void stopEngine(){
+		EngineTable.stopAllEngine();
+	}
 }

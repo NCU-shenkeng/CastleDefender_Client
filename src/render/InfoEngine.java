@@ -23,6 +23,7 @@ public class InfoEngine extends Engine{
 		InfoGraphics.getGraphic().drawEnemyCastleInformation(g);
 		
 		doneImage = buffer;
+		buffer = null;
 
 	}
 

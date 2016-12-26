@@ -6,6 +6,8 @@ import java.io.IOException;
 import cfg.Background;
 import cfg.Characters;
 import main.GameFrame;
+import tcp.TCPClient;
+import utils.MessageBuilder;
 
 public class OrdinaryPeopleScreen extends CustomScreen{
 	
@@ -24,6 +26,7 @@ public class OrdinaryPeopleScreen extends CustomScreen{
 	@Override
 	protected void handleEnter() throws IOException
 	{
+		TCPClient.getInstance().send(MessageBuilder.characterType(2));
 		game.changeScreen(new WaitingConnectionScreen());
 		kill();
 	}

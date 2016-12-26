@@ -46,7 +46,7 @@ public class Parser {
 	public static String toString(int input){
 		return Integer.toString(input);
 	}
-	public static int directionToInt(DirectionType direction){
+	public static int parseDirectionToInt(DirectionType direction){
 		switch(direction)
 		{
 			case north:
@@ -71,5 +71,17 @@ public class Parser {
 	public static int parseBoolean(boolean bool){
 		return (bool ? 1 : 0);
 	}
-
+	
+	public static CharacterType parseCharacterType(int character){
+		switch(character)
+		{
+		case 0:
+			return CharacterType.Guard;
+		case 1:
+			return CharacterType.Mage;
+		case 2:
+			return CharacterType.OrdinaryPeople;
+		}
+		return null;
+	}
 }

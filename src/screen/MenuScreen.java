@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import cfg.Background;
 import cfg.Selection;
 import main.GameFrame;
+import receiver.TCPMessageReceiver;
+import tcp.TCPClient;
 
 public class MenuScreen extends CustomScreen implements KeyListener
 {

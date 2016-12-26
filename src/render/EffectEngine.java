@@ -13,9 +13,11 @@ import player.Player;
 
 public class EffectEngine extends Engine{
 	
+	
+	int explosionTime = 200;
 
 	public EffectEngine() {
-		setFPS(500);
+		setFPS(2);
 	}
 	
 	@Override
@@ -31,12 +33,11 @@ public class EffectEngine extends Engine{
 			if(player.getSprite().getIsDamage())
 			{
 				Self.nowTime = System.currentTimeMillis();
-				if(Self.nowTime - Self.lastTime < 300)
+				if(Self.nowTime - Self.lastTime < explosionTime)
 					EffectGraphics.getGraphic().drawExplosion(graphics, player);
 				else{
 					player.getSprite().setIsDamage(false);
 				}
-					
 			}
 			if(player.getSprite().getIsPicking()){
 				EffectGraphics.getGraphic().drawPick(graphics, 

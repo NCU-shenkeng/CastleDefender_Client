@@ -5,7 +5,10 @@ import java.io.IOException;
 
 import cfg.Background;
 import cfg.Characters;
+import cfg.Self;
 import main.GameFrame;
+import tcp.TCPClient;
+import utils.MessageBuilder;
 
 public class GuardScreen extends CustomScreen{
 
@@ -25,6 +28,7 @@ public class GuardScreen extends CustomScreen{
 	@Override
 	protected void handleEnter() throws IOException
 	{
+		TCPClient.getInstance().send(MessageBuilder.characterType(0));
 		game.changeScreen(new WaitingConnectionScreen());
 		kill();
 	}

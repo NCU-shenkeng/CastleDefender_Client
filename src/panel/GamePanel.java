@@ -23,8 +23,6 @@ public class GamePanel extends JPanel implements KeyListener {
 	
 	
 	private static GamePanel game = null;
-	private static UDPMessageReceiver UDPReceiver;
-	private static TCPMessageReceiver TCPReceiver;
 	
 	private GamePanel(){
 		this.setBounds(0, 0, Window.WIDTH, Window.HEIGHT);
@@ -32,13 +30,6 @@ public class GamePanel extends JPanel implements KeyListener {
 		this.requestFocus();
 		this.setVisible(true);
 		this.addKeyListener(this);
-		UDPReceiver = new UDPMessageReceiver();
-		TCPReceiver = new TCPMessageReceiver();
-		Server.initUDPServer(); // run the client
-		Server.getUDPUS().setReceiveAction(UDPReceiver); // regist receiver
-
-		TCPClient.getInstance().initTCPClient();
-		TCPClient.getInstance().registReceiveAction(TCPReceiver);
 	}
 	
 	public static GamePanel getGame(){
@@ -73,10 +64,13 @@ public class GamePanel extends JPanel implements KeyListener {
 				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_A:
-				Keyboard.setSpace(true);
-				System.out.println("4,"+Integer.toString(Self.number));
-				TCPClient.getInstance().send("4,"+Integer.toString(Self.number));
+				Keyboard.setA(true);
+				TCPClient.getInstance().send("5,"+Integer.toString(Self.number)); // pick item
 				DOM.getSelf().getSprite().setAnimating(true);
+				break;
+			case KeyEvent.VK_SPACE:
+				TCPClient.getInstance().send("4,"+Integer.toString(Self.number)); // attack
+				Keyboard.setSpace(true);
 				break;
 			default:
 				break;
@@ -103,7 +97,7 @@ public class GamePanel extends JPanel implements KeyListener {
 				Keyboard.setSpace(false);
 				break;
 			case KeyEvent.VK_A:
-				Keyboard.setSpace(false);
+				Keyboard.setA(false);
 				break;
 			default:
 				break;

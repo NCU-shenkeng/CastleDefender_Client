@@ -6,6 +6,8 @@ import java.io.IOException;
 import cfg.Background;
 import cfg.Characters;
 import main.GameFrame;
+import tcp.TCPClient;
+import utils.MessageBuilder;
 
 public class MageScreen extends CustomScreen{
 	
@@ -26,6 +28,7 @@ public class MageScreen extends CustomScreen{
 	@Override
 	protected void handleEnter() throws IOException
 	{
+		TCPClient.getInstance().send(MessageBuilder.characterType(1));
 		game.changeScreen(new WaitingConnectionScreen());
 		kill();
 	}

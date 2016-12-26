@@ -7,7 +7,7 @@ import player.Player;
 public class PlayerTable
 {
 	private static PlayerTable playerTable = null;
-	private static ArrayList<Player> table =new ArrayList<Player>();
+	private static ArrayList<Player> table = new ArrayList<Player>();
 	
 	public static PlayerTable getPlayerTable()
 	{
@@ -20,7 +20,15 @@ public class PlayerTable
 		}
 		return playerTable;
 	}
-	
+	public boolean isExist(int number){
+		try{
+			table.get(number);
+		}
+		catch(Exception e){
+			return false;
+		}
+		return true;
+	}
 	public ArrayList<Player> getTable(){
 		return this.table;
 	}

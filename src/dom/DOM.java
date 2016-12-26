@@ -26,7 +26,8 @@ public class DOM {
 		return PlayerTable.getPlayerTable().getTable();
 	}
 	public static void addPlayer(Player player){
-		PlayerTable.getPlayerTable().getTable().add(player);
+		if(!PlayerTable.getPlayerTable().isExist(player.getNumber()))
+			PlayerTable.getPlayerTable().getTable().add(player.getNumber(),player);
 	}
 	public static void updatePlayerHealth(int number , int health){
 		Player player = getPlayer(number);
@@ -148,10 +149,10 @@ public class DOM {
 			Castle castle = CastleTable.getCastleTable().getCastle();
 			
 			if(Self.team == index){
-				System.out.println("Self casle " + args);
+				//System.out.println("Self casle " + args);
 				castle.setSelfCastleBlood(args);
 			}else{
-				System.out.println("Enemy casle " + args);
+				//System.out.println("Enemy casle " + args);
 				castle.setEnemyCastleBlood(args);
 			}
 		} catch (Exception e) {

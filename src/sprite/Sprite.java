@@ -17,7 +17,9 @@ import animation.MageAnimation;
 import animation.OrdinaryPeopleAnimation;
 import cfg.ActingType;
 import cfg.DirectionType;
+import cfg.Self;
 import character.CharacterType;
+import tcp.TCPClient;
 import utils.ImageTool;
 
 public class Sprite {
@@ -130,19 +132,16 @@ public class Sprite {
 	}
 	
 
-	    public void moveNorth() {this.facing = DirectionType.north; animation.setFrame(DirectionType.north);}
-	    public void moveSouth() {this.facing = DirectionType.south;animation.setFrame(DirectionType.south);}
-	    public void moveEast(){this.facing = DirectionType.east;animation.setFrame(DirectionType.east);}
-	    public void moveWest(){this.facing = DirectionType.west;animation.setFrame(DirectionType.west);}
-	    public void moveNorthEast(){this.facing = DirectionType.north_east;animation.setFrame(DirectionType.north_east);}
-	    public void moveNorthWest(){this.facing = DirectionType.north_west;animation.setFrame(DirectionType.north_west);}
-	    public void moveSouthEast(){this.facing = DirectionType.south_east;animation.setFrame(DirectionType.south_east);}
-	    public void moveSouthWest(){this.facing = DirectionType.south_west;animation.setFrame(DirectionType.south_west);}
-	    public void attack(){animation.setFrame(ActingType.attack);};
-	    public void damage(){}
-	    public void pick(){};
-	
-	
+	    public void moveNorth() {this.facing = DirectionType.north; animation.setMovingFrame(DirectionType.north);}
+	    public void moveSouth() {this.facing = DirectionType.south;animation.setMovingFrame(DirectionType.south);}
+	    public void moveEast(){this.facing = DirectionType.east;animation.setMovingFrame(DirectionType.east);}
+	    public void moveWest(){this.facing = DirectionType.west;animation.setMovingFrame(DirectionType.west);}
+	    public void moveNorthEast(){this.facing = DirectionType.north_east;animation.setMovingFrame(DirectionType.north_east);}
+	    public void moveNorthWest(){this.facing = DirectionType.north_west;animation.setMovingFrame(DirectionType.north_west);}
+	    public void moveSouthEast(){this.facing = DirectionType.south_east;animation.setMovingFrame(DirectionType.south_east);}
+	    public void moveSouthWest(){this.facing = DirectionType.south_west;animation.setMovingFrame(DirectionType.south_west);}
+	    public void attack(){animation.setAttackFrame(); }
+
 	public Animation getAnimation(){
 		return this.animation;
 	}

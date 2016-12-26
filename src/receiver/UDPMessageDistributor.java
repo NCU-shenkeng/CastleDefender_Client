@@ -39,6 +39,7 @@ public class UDPMessageDistributor {
 					ClientConfigHandler.setWinnerOrLoser(packet);
 					break;
 				case udp.Event.GAME_START:
+					ClientConfigHandler.startGame();
 					break;
 				case udp.Event.MAP_ITEM_ADD:
 					ItemHandler.addItem(packet);
@@ -73,6 +74,10 @@ public class UDPMessageDistributor {
 					PlayerHandler.handleRevive(packet);
 					break;
 				case udp.Event.PLAYER_SELECT_OK:
+					ClientConfigHandler.addPlayer(packet);
+					break;
+				case udp.Event.PLAYER_TELEPORT:
+					ClientConfigHandler.initPlayerLocation(packet);
 					break;
 					
 			}

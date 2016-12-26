@@ -71,7 +71,6 @@ public class PlayerHandler
 				Keyboard.reset();
 				GameFrame.getGame().requestFocus();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}

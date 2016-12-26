@@ -9,6 +9,8 @@ import cfg.Characters;
 import cfg.Selection;
 import cfg.Window;
 import main.GameFrame;
+import receiver.TCPMessageReceiver;
+import tcp.TCPClient;
 
 public class CharacterSelectionScreen extends CustomScreen{
 
@@ -32,6 +34,9 @@ public class CharacterSelectionScreen extends CustomScreen{
 		}
 		
 		game.addBackScreen(this);
+		
+		TCPClient.getInstance().initTCPClient();
+		TCPClient.getInstance().registReceiveAction(new TCPMessageReceiver());
 		
 	}
 	

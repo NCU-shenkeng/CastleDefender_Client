@@ -11,22 +11,23 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import cfg.ActingType;
 import cfg.DirectionType;
+import dom.DOM;
+import player.Player;
 import utils.ImageTool;
 
 public class CharacterAnimation extends Animation{
 	
 	private Map<DirectionType , List<Frame> > allMovingFrames= new EnumMap<DirectionType , List<Frame> >(DirectionType.class);
-	private Map<ActingType , List<Frame> > allActingFrames= new EnumMap<ActingType , List<Frame> >(ActingType.class);
+	private Map<DirectionType , List<Frame> > allAttackingFrames= new EnumMap<DirectionType , List<Frame> >(DirectionType.class);
 	
 	public CharacterAnimation(DirectionType direction , String path , int delay){
 		super();
 		File move = new File(path +"/move");
-		File act = new File(path + "/act");
+		File act = new File(path + "/act/attack");
     	loadMovingFrames(move);
-    	loadActingFrames(act);
-    	setFrame(direction);
+    	loadAttackingFrames(act);
+    	setMovingFrame(direction);
     	setDelay(delay);
     	init();
 	}
@@ -35,7 +36,6 @@ public class CharacterAnimation extends Animation{
     {
     	for(File directory : f.listFiles())
     	{
-    		System.out.println("load" + directory.getName());
     		switch(DirectionType.valueOf(directory.getName()))
     		{
     			case north:
@@ -65,24 +65,24 @@ public class CharacterAnimation extends Animation{
     		}
     	}
     }
-    private void loadActingFrames(File f)
+    private void loadAttackingFrames(File f)
     {
     	if(!f.isDirectory()) return;
     	for(File directory : f.listFiles())
     	{
-    		switch(ActingType.valueOf(directory.getName()))
+    		switch(DirectionType.valueOf(directory.getName()))
     		{
-    			case attack:
-    				allActingFrames.put(ActingType.attack, getFrames(directory));
+    			case north:
+    				allAttackingFrames.put(DirectionType.north, getFrames(directory));
     				break;
-    			case damage:
-    				allActingFrames.put(ActingType.damage, getFrames(directory));
+    			case west:
+    				allAttackingFrames.put(DirectionType.west, getFrames(directory));
     				break;
-    			case pick:
-    				allActingFrames.put(ActingType.pick , getFrames(directory));
+    			case south:
+    				allAttackingFrames.put(DirectionType.south , getFrames(directory));
     				break;
-    			case dead:
-    				allActingFrames.put(ActingType.dead, getFrames(directory));
+    			case east:
+    				allAttackingFrames.put(DirectionType.east, getFrames(directory));
     				break;
 			default:
 				break;
@@ -109,7 +109,7 @@ public class CharacterAnimation extends Animation{
     }
     
     
-    public void setFrame(DirectionType direction)
+    public void setMovingFrame(DirectionType direction)
     {
 
     	switch(direction)
@@ -140,19 +140,23 @@ public class CharacterAnimation extends Animation{
 				break;
     	}
     }
-    public void setFrame(ActingType action)
+    public void setAttackFrame()
     {
-    	switch(action)
+    	Player self = DOM.getSelf();
+    	switch(self.getSprite().getFacing())
     	{
-	    	case attack:
-				setFrames(allActingFrames.get(ActingType.attack));
-				break;
-			case pick:
-				setFrames(allMovingFrames.get(ActingType.pick));
-				break;
-			case dead:
-				setFrames(allMovingFrames.get(ActingType.dead));
-				break;
+    		case east:
+    			setFrames(allAttackingFrames.get(DirectionType.east));
+    			break;
+    		case west:
+    			setFrames(allAttackingFrames.get(DirectionType.west));
+    			break;
+    		case north:
+    			setFrames(allAttackingFrames.get(DirectionType.north));
+    			break;
+    		case south:
+    			setFrames(allAttackingFrames.get(DirectionType.south));
+    			break;
     	}
     }
     
