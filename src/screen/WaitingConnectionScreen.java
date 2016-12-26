@@ -11,8 +11,5 @@ public class WaitingConnectionScreen extends CustomScreen{
 
 	public WaitingConnectionScreen() throws IOException {
 		super(Background.SCREEN_WAITING_CONNECTION);
-		
-		Server.getUDPUS().initUDPServer();
-		Server.getUDPUS().setReceiveAction(new UDPMessageReceiver());
 	}
 }

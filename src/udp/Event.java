@@ -2,7 +2,7 @@ package udp;
 
 public class Event
 { // int [.....]
-	public static final int PLAYER_SELECT_OK = 1;// playerID,teamID,type(0=護衛,1=法師,3=平民)
+	public static final int PLAYER_SELECT_OK = 1;// playerID,teamID,type(0=護衛,1=法師,2=平民)
 	public static final int GAME_START = 2;// (棄用)
 	public static final int PLAYER_HP_CHANGE = 3;// playerID,HP  ok
 	public static final int PLAYER_ATTACK = 4;// playerID  ok

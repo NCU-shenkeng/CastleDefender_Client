@@ -21,4 +21,8 @@ public class ItemTable {
 	public ArrayList<Item> getTable(){
 		return clientItem;
 	}
+	
+	public void reset(){
+		this.clientItem.clear();
+	}
 }

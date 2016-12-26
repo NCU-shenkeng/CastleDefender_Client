@@ -38,7 +38,6 @@ public class SpriteEngine extends Engine{
 				CharacterGraphic.getGraphic().drawStaticPlayer(graphics, player);
 		}
 		doneImage = buffer;
-		
 	}
 
 	@Override

@@ -10,7 +10,9 @@ import cfg.Selection;
 import cfg.Window;
 import main.GameFrame;
 import receiver.TCPMessageReceiver;
+import receiver.UDPMessageReceiver;
 import tcp.TCPClient;
+import udp.Server;
 
 public class CharacterSelectionScreen extends CustomScreen{
 
@@ -36,7 +38,9 @@ public class CharacterSelectionScreen extends CustomScreen{
 		game.addBackScreen(this);
 		
 		TCPClient.getInstance().initTCPClient();
-		TCPClient.getInstance().registReceiveAction(new TCPMessageReceiver());
+		
+		Server.getUDPUS().initUDPServer();
+		Server.getUDPUS().setReceiveAction(new UDPMessageReceiver());
 		
 	}
 	

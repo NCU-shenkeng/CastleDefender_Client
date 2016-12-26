@@ -34,6 +34,8 @@ public class TCPMessageDistributor {
 			case tcp.Event.WELCOM:
 				ClientConfigHandler.setSelfIDAndTeam(packet);
 				break;
+			case tcp.Event.ROOM_FULL:
+				System.out.println("room full");
 			}
 		}
 	}

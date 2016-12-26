@@ -32,4 +32,8 @@ public class PlayerTable
 	public ArrayList<Player> getTable(){
 		return this.table;
 	}
+	
+	public void reset(){
+		this.table.clear();
+	}
 }

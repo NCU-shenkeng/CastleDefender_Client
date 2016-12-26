@@ -18,7 +18,9 @@ import panel.WinPanel;
 import player.Player;
 import render.Engine;
 import render.GameEngine;
+import tcp.TCPClient;
 import udp.Packet;
+import udp.Server;
 
 public class ClientConfigHandler 
 {
@@ -28,13 +30,18 @@ public class ClientConfigHandler
 		
 		Self.number = number;
 		Self.team = team;
-	
 	}
 	
 	
 	public static void setWinnerOrLoser(Packet packet){
 		
 		GameEngine.getEngine().stopEngine();
+		try {
+			Thread.sleep(20);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int number = Integer.parseInt(packet.getArgs().get(0));
 		try
 		{
@@ -71,13 +78,17 @@ public class ClientConfigHandler
 		try 
 		{
 			GameFrame.getGame().changeScreen(GamePanel.getGame());
-			GameEngine.getEngine().start();
 			GameEngine.getEngine().startEngine();
-			EngineTable.engineTable.get(3).stop();
 			new Thread(GameEngine.getEngine()).start();
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
+	}
+	public static void closeGame(){
+		DOM.reset();
+		TCPClient.getInstance().reset();
+		Server.getUDPUS().reset();
+		GamePanel.getGame().reset();
 	}
 }

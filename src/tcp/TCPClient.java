@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import receiver.TCPMessageReceiver;
+
 
 public class TCPClient{
 	
@@ -31,7 +33,8 @@ public class TCPClient{
 	public void initTCPClient(){
 		if(instance == null) throw new NullPointerException("instance null");
 		try
-		{
+		{	
+
 			socket = new Socket(host , port);
 			listen = new TCPClientListenServer(socket);
 			output = new DataOutputStream(socket.getOutputStream());
@@ -45,7 +48,9 @@ public class TCPClient{
 		System.out.println("client init");
 	}
 	
-	private TCPClient(){}
+	private TCPClient(IReceive receiver){
+		this.receiver = receiver;
+	}
 	
 	/**
 	 * get host
@@ -78,7 +83,7 @@ public class TCPClient{
 		if(instance == null)
 		{
 			synchronized (TCPClient.class) {
-				instance = new TCPClient();
+				instance = new TCPClient(new TCPMessageReceiver());
 			}
 		}
 		return instance;
@@ -103,6 +108,12 @@ public class TCPClient{
 	 */
 	
 	public void stopListen(){
-		this.listen.setRunning(false);
+		listen.setRunning(false);
+	}
+	
+	
+	public void reset(){
+		stopListen();
+		instance = null;
 	}
 }

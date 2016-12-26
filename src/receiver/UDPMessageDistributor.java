@@ -37,6 +37,7 @@ public class UDPMessageDistributor {
 					break;
 				case udp.Event.GAME_OVER:
 					ClientConfigHandler.setWinnerOrLoser(packet);
+					ClientConfigHandler.closeGame();
 					break;
 				case udp.Event.GAME_START:
 					ClientConfigHandler.startGame();
@@ -77,6 +78,7 @@ public class UDPMessageDistributor {
 					ClientConfigHandler.addPlayer(packet);
 					break;
 				case udp.Event.PLAYER_TELEPORT:
+					System.out.println(message);
 					ClientConfigHandler.initPlayerLocation(packet);
 					break;
 					

@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		if(game == null)
 		{
 			synchronized(GamePanel.class){
+				System.out.println(123);
 				game = new GamePanel();
 			}
 		}
@@ -106,5 +107,9 @@ public class GamePanel extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) 
 	{
+	}
+	
+	public void reset(){
+		game = null;
 	}
 }

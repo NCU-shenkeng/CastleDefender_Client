@@ -9,7 +9,7 @@ public abstract class Engine implements Runnable
 {
 	
 	private boolean running = false;
-	private long fps = 60;
+	private long fps = 10;
 	private long ms = 1000 / fps;
 	
 	protected BufferedImage buffer;
@@ -31,9 +31,9 @@ public abstract class Engine implements Runnable
 			if(lastTime + ms <= now){
 				lastTime = now;
 				tick();
-				if(running)	
-					render();
 			}
+			if(running)	
+				render();
 		}
 	}
 	

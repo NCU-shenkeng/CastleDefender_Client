@@ -158,7 +158,7 @@ public class InfoGraphics extends Graph{
 		int ebloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99)?531:536;
 		int ebloody=50;
 		int offset=45;
-		int eitemx=600;
+		int eitemx=610;
 		int eitemy=15;
 		int itemsize=30;
 		g.drawImage(enemyinfo, 370, 0, 730,150, null);

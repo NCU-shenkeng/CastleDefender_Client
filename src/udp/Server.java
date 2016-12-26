@@ -58,7 +58,7 @@ public class Server implements Runnable
 
 	private int port; // 連接埠
 	private int bufferSize; // 訊息暫存區最大的訊息大小
-	private Boolean runFlag = true; // 執行記號
+	private  Boolean runFlag = true; // 執行記號
 	ReceiveAction action; // 接受訊息後動作
 
 	/**
@@ -165,5 +165,11 @@ public class Server implements Runnable
 	public void setReceiveAction(ReceiveAction action)
 	{
 		this.action = action;
+	}
+	
+	public  void reset(){
+		runFlag = false;
+		instance = null;
+		UDPUS = null;
 	}
 }

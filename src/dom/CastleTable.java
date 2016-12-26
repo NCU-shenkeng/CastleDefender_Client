@@ -1,7 +1,5 @@
 package dom;
 
-import java.util.ArrayList;
-
 import castle.Castle;
 
 public class CastleTable {
@@ -17,8 +15,12 @@ public class CastleTable {
 		return castleTable;
 	}
 	
-	public Castle getCastle(){
-		
+	public Castle getCastle(){	
 		return castleItem;
+	}
+	
+	public void reset(){
+		castleItem = null;
+		castleItem = new Castle();
 	}
 }

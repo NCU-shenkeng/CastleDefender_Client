@@ -159,5 +159,9 @@ public class DOM {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void reset(){
+		CastleTable.getCastleTable().reset();
+		ItemTable.getItemTable().reset();
+		PlayerTable.getPlayerTable().reset();
+	}
 }

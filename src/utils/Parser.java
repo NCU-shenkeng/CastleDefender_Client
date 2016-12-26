@@ -75,12 +75,12 @@ public class Parser {
 	public static CharacterType parseCharacterType(int character){
 		switch(character)
 		{
-		case 0:
-			return CharacterType.Guard;
-		case 1:
-			return CharacterType.Mage;
-		case 2:
-			return CharacterType.OrdinaryPeople;
+			case 0:
+				return CharacterType.Guard;
+			case 1:
+				return CharacterType.Mage;
+			case 2:
+				return CharacterType.OrdinaryPeople;
 		}
 		return null;
 	}

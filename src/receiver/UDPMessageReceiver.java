@@ -10,6 +10,7 @@ public class UDPMessageReceiver implements ReceiveAction{
 	
 	@Override
 	public void run(String msg) {
+		//System.out.println(msg);
 		distributor.distributeMessage(msg);
 	}
 }

@@ -1,9 +1,7 @@
 package render;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import cfg.Window;
 import graphics.ItemGraphic;
 
 public class ItemEngine extends Engine
@@ -14,7 +12,7 @@ public class ItemEngine extends Engine
 	public ItemEngine()
 	{
 		this.graph = ItemGraphic.getGraph();
-		setFPS(30);
+		//setFPS(30);
 	}
 	
 	@Override

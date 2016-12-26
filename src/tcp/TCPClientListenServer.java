@@ -2,13 +2,14 @@ package tcp;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class TCPClientListenServer implements Runnable{
 	
 	private Socket socket;
 	DataInputStream input;
 	
-	private boolean running = true;
+	private static boolean running = true;
 	
 	public TCPClientListenServer(Socket socket){
 	
@@ -30,12 +31,14 @@ public class TCPClientListenServer implements Runnable{
 		{
 			try 
 			{
-			String msg = input.readUTF();
-			TCPClient.getInstance().onReceive(msg);
+				if(!socket.isConnected()){
+					String msg = input.readUTF();
+					TCPClient.getInstance().onReceive(msg);
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
 		}
 	}
 }

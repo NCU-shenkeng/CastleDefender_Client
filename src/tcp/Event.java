@@ -9,4 +9,5 @@ public class Event
 	public static final int PLAYER_GET_ITEM = 5;// playID
 	public static final int HEART_BEAT = 6;// (±ó¥Î)
 	public static final int WELCOM = 7;//playID,teamID 
+	public static final int ROOM_FULL = 9;
 }
