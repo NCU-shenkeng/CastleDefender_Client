@@ -36,6 +36,7 @@ public class TCPMessageDistributor {
 				break;
 			case tcp.Event.ROOM_FULL:
 				System.out.println("room full");
+				break;
 			}
 		}
 	}

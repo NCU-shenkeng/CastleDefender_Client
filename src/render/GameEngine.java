@@ -32,26 +32,26 @@ public class GameEngine extends Engine{
 		
 			sceneEngine = new SceneEngine();
 			spriteEngine = new SpriteEngine();
-			//itemEngine= new ItemEngine();
+			itemEngine= new ItemEngine();
 			infoEngine = new InfoEngine();
 			effectEngine = new EffectEngine();
 			
 			EngineTable.engineTable.add(sceneEngine);
 			EngineTable.engineTable.add(spriteEngine);
-			//EngineTable.engineTable.add(itemEngine);
+			EngineTable.engineTable.add(itemEngine);
 			EngineTable.engineTable.add(infoEngine);
 			EngineTable.engineTable.add(effectEngine);
 			EngineTable.engineTable.add(this);
 			
 			scene = new Thread(sceneEngine);
 			sprite = new Thread(spriteEngine);
-			//item = new Thread(itemEngine);
+			item = new Thread(itemEngine);
 			info = new Thread(infoEngine);
 			effect = new Thread(effectEngine);
 			
 			scene.start();
 			sprite.start();
-			//item.start();
+			item.start();
 			info.start();
 			effect.start();
 
@@ -79,7 +79,7 @@ public class GameEngine extends Engine{
 
 			bufferG.drawImage(sceneEngine.getBuffer(), 0, 0, null);
 			bufferG.drawImage(spriteEngine.getBuffer(),0 ,0, null);
-			//bufferG.drawImage(itemEngine.getBuffer(),0 ,0, null);	
+			bufferG.drawImage(itemEngine.getBuffer(),0 ,0, null);	
 			bufferG.drawImage(infoEngine.getBuffer(), 0, 0, null);
 			bufferG.drawImage(effectEngine.getBuffer() , 0 , 0 , null);
 			

@@ -31,12 +31,16 @@ public class TCPClientListenServer implements Runnable{
 		{
 			try 
 			{
-				if(!socket.isConnected()){
+				if(socket.isConnected()){
 					String msg = input.readUTF();
 					TCPClient.getInstance().onReceive(msg);
 				}
+				else{
+					socket.close();
+					break;
+				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		
 		}

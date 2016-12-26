@@ -3,6 +3,7 @@ package receiver;
 
 import java.util.Vector;
 
+import dom.DOM;
 import handler.CastleHandler;
 import handler.ClientConfigHandler;
 import handler.ItemHandler;
@@ -40,6 +41,7 @@ public class UDPMessageDistributor {
 					ClientConfigHandler.closeGame();
 					break;
 				case udp.Event.GAME_START:
+					System.out.println(message);
 					ClientConfigHandler.startGame();
 					break;
 				case udp.Event.MAP_ITEM_ADD:
@@ -78,7 +80,6 @@ public class UDPMessageDistributor {
 					ClientConfigHandler.addPlayer(packet);
 					break;
 				case udp.Event.PLAYER_TELEPORT:
-					System.out.println(message);
 					ClientConfigHandler.initPlayerLocation(packet);
 					break;
 					

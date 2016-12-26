@@ -30,6 +30,8 @@ public class ClientConfigHandler
 		
 		Self.number = number;
 		Self.team = team;
+		
+		System.out.println(Self.number);
 	}
 	
 	

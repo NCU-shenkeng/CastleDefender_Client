@@ -34,10 +34,11 @@ public class TCPClient{
 		if(instance == null) throw new NullPointerException("instance null");
 		try
 		{	
-
 			socket = new Socket(host , port);
 			listen = new TCPClientListenServer(socket);
 			output = new DataOutputStream(socket.getOutputStream());
+			
+			this.receiver = new TCPMessageReceiver();
 					
 			listenThread = new Thread(listen);
 			listenThread.start();

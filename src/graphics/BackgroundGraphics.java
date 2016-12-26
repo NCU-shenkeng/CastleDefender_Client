@@ -168,8 +168,8 @@ public class BackgroundGraphics extends Graph
 	
 	private void InitLocation()
 	{
-		this.BlockX = DOM.getSelf().getSprite().getX();
-		this.BlockY = DOM.getSelf().getSprite().getY();
+		//this.BlockX = DOM.getSelf().getSprite().getX();
+		//this.BlockY = DOM.getSelf().getSprite().getY();
 	}
 	
 	private void OpenImge (BufferedImage img[])
