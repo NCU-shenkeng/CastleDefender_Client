@@ -38,7 +38,9 @@ public class TCPClient{
 			listen = new TCPClientListenServer(socket);
 			output = new DataOutputStream(socket.getOutputStream());
 			
-			this.receiver = new TCPMessageReceiver();
+			System.out.println("socket" + !socket.isClosed());
+
+			receiver = new TCPMessageReceiver();
 					
 			listenThread = new Thread(listen);
 			listenThread.start();
@@ -46,7 +48,6 @@ public class TCPClient{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("client init");
 	}
 	
 	private TCPClient(IReceive receiver){
@@ -102,6 +103,10 @@ public class TCPClient{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean getSocketStatus(){
+		return socket.isClosed();
 	}
 
 	/**

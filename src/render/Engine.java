@@ -35,6 +35,7 @@ public abstract class Engine implements Runnable
 			if(running)	
 				render();
 		}
+		running = false;
 	}
 	
 	public abstract void tick();

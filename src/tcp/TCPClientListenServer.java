@@ -17,7 +17,6 @@ public class TCPClientListenServer implements Runnable{
 			this.socket = socket;
 			input = new DataInputStream( socket.getInputStream() );
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -31,13 +30,9 @@ public class TCPClientListenServer implements Runnable{
 		{
 			try 
 			{
-				if(!socket.isClosed()){
+				if(socket.isConnected() &&(input.available() > 0)){
 					String msg = input.readUTF();
 					TCPClient.getInstance().onReceive(msg);
-				}
-				else{
-					socket.close();
-					break;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -68,6 +68,22 @@ public class GameEngine extends Engine{
 	}
 	@Override
 	public void tick() {
+		if(!scene.isAlive()){
+			scene = new Thread(sceneEngine);
+			scene.start();
+		}
+		else if(!sprite.isAlive()){
+			sprite = new Thread(spriteEngine);
+			sprite.start();
+		}
+		else if(!info.isAlive()){
+			info = new Thread(infoEngine);
+			info.start();
+		}
+		else if(!effect.isAlive()){
+			effect = new Thread(effectEngine);
+			effect.start();
+		}
 	}
 
 	@Override

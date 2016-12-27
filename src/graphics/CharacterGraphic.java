@@ -49,7 +49,7 @@ public class CharacterGraphic extends Graph
 		else 
 		{
 			setSelf();
-			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); //draw self
+			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); // draw other
 		}
 	}
 

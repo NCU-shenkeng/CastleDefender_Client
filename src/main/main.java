@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import character.CharacterType;
 import dom.DOM;
 import dom.PlayerTable;
+import handler.ClientConfigHandler;
 import item.Item;
 import panel.GamePanel;
 import panel.LosePanel;

@@ -61,6 +61,7 @@ public abstract class Animation {
     public void setFrames(List<Frame> frames){
     	if(frames == null) return;
     	if(frames == this.frames) return ;
+    	this.currentFrame = 0;
     	this.frames = frames;
     	this.frameCount = frames.size();
     	this.totalFrames = frames.size();
@@ -139,6 +140,4 @@ public abstract class Animation {
         }
 
     }
- 
-
 }

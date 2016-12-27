@@ -33,7 +33,7 @@ public class SpriteEngine extends Engine{
 				continue;
 			}
 			if(player.getSprite().getIsAnimating())
-				CharacterGraphic.getGraphic().drawAnimatingPlayer(graphics, player);	
+				CharacterGraphic.getGraphic().drawAnimatingPlayer(graphics, player);
 			else 
 				CharacterGraphic.getGraphic().drawStaticPlayer(graphics, player);
 		}
@@ -42,7 +42,6 @@ public class SpriteEngine extends Engine{
 
 	@Override
 	public void update() {
-		
 		for(Player player : DOM.getPlayerTable()){
 			if(player.getSprite().getIsAnimating()){
 				player.getSprite().getAnimation().start();
