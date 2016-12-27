@@ -42,7 +42,7 @@ public class TCPClient{
 
 			receiver = new TCPMessageReceiver();
 					
-			listenThread = new Thread(listen);
+			listenThread = new Thread(listen,"Test ing");
 			listenThread.start();
 		}
 		catch(Exception e){
@@ -98,6 +98,7 @@ public class TCPClient{
 	public void send(String msg){
 		if(socket == null) throw new NullPointerException("socket null");
 		if(output == null) throw new NullPointerException("output stream null");
+		if(socket.isClosed()) return;
 		try {
 			output.writeUTF(msg);
 		} catch (IOException e) {
@@ -120,5 +121,13 @@ public class TCPClient{
 	
 	public void reset(){
 		stopListen();
+		try {
+			socket.close();
+			listenThread = null;
+			listen = null;
+			instance = null;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
