@@ -19,7 +19,6 @@ public class SceneEngine extends Engine{
 	
 	private BackgroundGraphics graph;
 
-	
 	public SceneEngine() {
 		this.graph = BackgroundGraphics.getGraph();
 		setFPS((int)(DOM.getSelf().getCharacter().getSpeed()*2));
@@ -34,8 +33,9 @@ public class SceneEngine extends Engine{
 	public void render() {
 		BufferedImage buffer = new BufferedImage(Window.WIDTH, Window.HEIGHT,BufferedImage.TYPE_3BYTE_BGR);
 		Graphics g = buffer.getGraphics();
-		graph.paint(g);
+		if(g == null) g = buffer.getGraphics();
 		
+		graph.paint(g);
 		ItemGraphic.getGraph().paint(g);
 
 		doneImage = buffer;

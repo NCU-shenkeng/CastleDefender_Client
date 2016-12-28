@@ -67,11 +67,11 @@ public class GamePanel extends JPanel implements KeyListener {
 			case KeyEvent.VK_A:
 				Keyboard.setA(true);
 				TCPClient.getInstance().send("5,"+Integer.toString(Self.number)); // pick item
-				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			case KeyEvent.VK_SPACE:
 				TCPClient.getInstance().send("4,"+Integer.toString(Self.number)); // attack
 				Keyboard.setSpace(true);
+				DOM.getSelf().getSprite().setAnimating(true);
 				break;
 			default:
 				break;
@@ -108,7 +108,6 @@ public class GamePanel extends JPanel implements KeyListener {
 	public void keyTyped(KeyEvent e) 
 	{
 	}
-	
 	public void reset(){
 		game = null;
 	}

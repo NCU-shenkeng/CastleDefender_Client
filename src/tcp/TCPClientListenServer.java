@@ -9,15 +9,15 @@ public class TCPClientListenServer implements Runnable{
 	private Socket socket;
 	DataInputStream input;
 	
-	private static boolean running = true;
+	private boolean running = true;
 	
 	public TCPClientListenServer(Socket socket){
 	
 		try {	
 			this.socket = socket;
 			input = new DataInputStream( socket.getInputStream() );
+			running = true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -31,18 +31,18 @@ public class TCPClientListenServer implements Runnable{
 		{
 			try 
 			{
-				if(!socket.isClosed()){
+					System.out.println("tcp listen");
 					String msg = input.readUTF();
 					TCPClient.getInstance().onReceive(msg);
-				}
-				else{
+			} catch (Exception e) {
+				try {
 					socket.close();
-					break;
+					running = false;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-		
 		}
 	}
 }

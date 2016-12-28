@@ -71,8 +71,6 @@ public class ClientConfigHandler
 		DirectionType facing = utils.Parser.parseDirection(packet.getArgs().get(3));
 		
 		
-		System.out.println("number : "+number+"x : " + x + "y : " + y);
-		
 		if(number == Self.number){
 			BackgroundGraphics.getGraph().setBlockX(x);
 			BackgroundGraphics.getGraph().setBlockY(y);

@@ -38,15 +38,16 @@ public class TCPClient{
 			listen = new TCPClientListenServer(socket);
 			output = new DataOutputStream(socket.getOutputStream());
 			
-			this.receiver = new TCPMessageReceiver();
+			System.out.println("socket" + !socket.isClosed());
+
+			receiver = new TCPMessageReceiver();
 					
-			listenThread = new Thread(listen);
+			listenThread = new Thread(listen,"Test ing");
 			listenThread.start();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("client init");
 	}
 	
 	private TCPClient(IReceive receiver){
@@ -97,11 +98,16 @@ public class TCPClient{
 	public void send(String msg){
 		if(socket == null) throw new NullPointerException("socket null");
 		if(output == null) throw new NullPointerException("output stream null");
+		if(socket.isClosed()) return;
 		try {
 			output.writeUTF(msg);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean getSocketStatus(){
+		return socket.isClosed();
 	}
 
 	/**
@@ -115,5 +121,13 @@ public class TCPClient{
 	
 	public void reset(){
 		stopListen();
+		try {
+			socket.close();
+			listenThread = null;
+			listen = null;
+			instance = null;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

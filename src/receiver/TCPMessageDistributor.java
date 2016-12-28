@@ -13,6 +13,7 @@ public class TCPMessageDistributor {
 	
 	public void distributeMessage(String msg)
 	{
+		System.out.println(msg);
 		Vector<Packet> packets = decodeMessage(msg);
 		for(Packet packet : packets)
 		{
