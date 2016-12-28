@@ -35,7 +35,7 @@ private static EffectGraphics effectGraphics = null;
 	
 	public void drawPick(Graphics g , Player player , int fullTime , int leftTime)
 	{
-		int x = player.getCordinateXInPanel()+30;
+		int x = player.getCordinateXInPanel()+33;
 		int y = player.getCordinateYInPanel()-45;
 		
 		int startAngle = ((fullTime - leftTime) * 360) / fullTime;

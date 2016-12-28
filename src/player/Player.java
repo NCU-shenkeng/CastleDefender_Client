@@ -55,7 +55,7 @@ public class Player {
 		}
 	}
 	private void setSprite(CharacterType type , int x ,int y ){
-		this.sprite = new Sprite(type , x , y , DirectionType.south ,7) ; // default facing north and the delay is 7
+		this.sprite = new Sprite(type , x , y , DirectionType.south ,2) ; // default facing north and the delay is 7
 	}
 	
 	public Character getCharacter(){

@@ -2,6 +2,7 @@ package handler;
 
 import java.util.ArrayList;
 
+import cfg.Self;
 import dom.DOM;
 import udp.Packet;
 
@@ -31,4 +32,9 @@ public class CastleHandler {
 	public static void castleBlood(Packet packet) {
 		DOM.UpdateCastleBlood(Integer.valueOf(packet.getArgs().get(0)), packet.getArgs().get(1));
 	}
+
+	public static void castleHPChange(Packet packet){
+		Self.hpchange = true;
+	}
+
 }

@@ -1,14 +1,17 @@
 package graphics;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import cfg.Self;
 import dom.CastleTable;
 import dom.DOM;
 import player.Player;
@@ -22,8 +25,10 @@ public class InfoGraphics extends Graph{
 	private int elist[] = new int[11];
 	private String Blood="";
 	private String eBlood="";
-	private BufferedImage info,selfinfo,enemyinfo;
+	private BufferedImage info,selfinfo,enemyinfo,hpchange;
 	private static InfoGraphics infoGraphic = null;
+	
+	private int hpChangeDelay = 3000;
 	
 	public static InfoGraphics getGraphic(){
 		if(infoGraphic == null){
@@ -36,6 +41,12 @@ public class InfoGraphics extends Graph{
 	
 	private void OpenImge (BufferedImage img[])
 	{
+		try {
+			hpchange = ImageTool.getImage("images/HP_change.png");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String path[] = {
 						 "images/item/ATTACKSPEED1.bmp",
 				  		 "images/item/ATTACKSPEED2.bmp",
@@ -87,6 +98,7 @@ public class InfoGraphics extends Graph{
 		drawEnemyCastleInformation(g);
 		drawSelfCastleInformation(g);
 		drawPlayerInformation(g);
+		drawHPChagne(g);
 	}
 	
 	
@@ -192,4 +204,15 @@ public class InfoGraphics extends Graph{
 			eitemx+=offset;
 		}
 	}
+	public void drawHPChagne(Graphics g){
+		long nowTime = System.currentTimeMillis();
+		if(Self.hpchange && ((nowTime - Self.hpChangeLastTime) < hpChangeDelay)){
+			g.drawImage(hpchange, 0, 300, null);
+		}
+		else{
+			Self.hpchange = false;
+		}
+	}
+
+
 }

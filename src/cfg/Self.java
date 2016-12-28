@@ -7,4 +7,7 @@ public class Self {
 	
 	public static long nowTime = 0;
 	public static long lastTime = 0;
+	
+	public static boolean hpchange = false;
+	public static long hpChangeLastTime = 0;
 }

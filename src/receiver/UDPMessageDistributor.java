@@ -4,6 +4,7 @@ package receiver;
 import java.util.Vector;
 
 import cfg.Keyboard;
+import cfg.Self;
 import dom.DOM;
 import handler.CastleHandler;
 import handler.ClientConfigHandler;
@@ -82,6 +83,11 @@ public class UDPMessageDistributor {
 					break;
 				case udp.Event.PLAYER_TELEPORT:
 					ClientConfigHandler.initPlayerLocation(packet);
+					break;
+				case udp.Event.CASTLE_BUFF_HP_CHANGE:
+					Self.hpChangeLastTime = System.currentTimeMillis();
+					Self.hpchange = true;
+					System.out.println("message receive");
 					break;
 			}
 		}

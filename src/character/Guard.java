@@ -5,7 +5,7 @@ public class Guard extends Character{
 
 	
 	public Guard() {
-		super(CharacterType.Guard, 3, 1, 3 ,2);
+		super(CharacterType.Guard, 3, 0.5, 3 ,2);
 	}
 
 }
