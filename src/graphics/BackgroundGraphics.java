@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+import background.BackgroundImagePath;
 import background.BasicBlockType;
 import background.Map;
 import cfg.Self;
@@ -27,6 +27,7 @@ public class BackgroundGraphics extends Graph
 	private int BlockY;
 	private Map map;
 	private BufferedImage img[] = new BufferedImage[BasicBlockType.NUMOFBLOCK];
+	/*
 	private final String path[] = {"images/backgound/ROCK.bmp",
 			 					   "images/backgound/SAND1.bmp",
 			 					   "images/backgound/SAND2.bmp",
@@ -45,7 +46,7 @@ public class BackgroundGraphics extends Graph
 			 					   "images/backgound/CASTLE_A7.png",
 			 					   "images/backgound/CASTLE_A8.png",
 			 					   "images/backgound/CASTLE_A9.png"};
-	
+	*/
 	int userViewWidth = 1100;
 	int userViewHigh = 700;
 	int delay = 20; //milliseconds
@@ -178,7 +179,7 @@ public class BackgroundGraphics extends Graph
 		
 		for (int i = 0; i < BasicBlockType.NUMOFBLOCK; i++)
 		{
-			origFile = new File(path[i]);
+			origFile = new File("images/backgound/" + BackgroundImagePath.path[i] + ".bmp");
 			
 			try 
 			{

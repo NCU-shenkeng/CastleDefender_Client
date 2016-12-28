@@ -37,10 +37,10 @@ public class Map
 				
 				int blocktype = Character.getNumericValue(line.charAt(i));
 				
-				if (blocktype == BasicBlockType.SAND1 ||
-					blocktype == BasicBlockType.SAND2 ||
-					blocktype == BasicBlockType.FLOOR1 ||
-					blocktype == BasicBlockType.FLOOR2)
+				if (blocktype == BasicBlockType.BLACK ||
+					blocktype == BasicBlockType.CASTLE_A7 ||
+					blocktype == BasicBlockType.CASTLE_B3 ||
+					blocktype == BasicBlockType.FLOWER)
 					scene[i][j] = new BasicBlock(blocktype, true);
 				else
 					scene[i][j] = new BasicBlock(blocktype, false);
