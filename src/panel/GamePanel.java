@@ -14,8 +14,10 @@ import cfg.Window;
 import dom.DOM;
 
 import graphics.BackgroundGraphics;
+import monitor.Monitor;
 import receiver.TCPMessageReceiver;
 import receiver.UDPMessageReceiver;
+import render.GameEngine;
 import tcp.TCPClient;
 import udp.Server;
 
@@ -30,6 +32,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		this.requestFocus();
 		this.setVisible(true);
 		this.addKeyListener(this);
+	
 	}
 	
 	public static GamePanel getGame(){
@@ -108,6 +111,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	public void keyTyped(KeyEvent e) 
 	{
 	}
+	
 	public void reset(){
 		game = null;
 	}

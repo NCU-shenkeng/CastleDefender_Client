@@ -83,7 +83,11 @@ public class InfoGraphics extends Graph{
 		}
 	}
 	@Override
-	public void paint(Graphics g) {}
+	public void paint(Graphics g) {
+		drawEnemyCastleInformation(g);
+		drawSelfCastleInformation(g);
+		drawPlayerInformation(g);
+	}
 	
 	
 	public void drawPlayerInformation(Graphics g)
@@ -101,7 +105,7 @@ public class InfoGraphics extends Graph{
 		String attackpower = Parser.toString(self.getCharacter().getAttackPower());
 		String type = Parser.parseCharacterToChinese(self.getCharacter().getType());
 		String reviveTime = Parser.toString(self.getReviveTime());
-		
+	
 		g.drawString(health,initX + 40, initY + 30); // health
 		g.drawString(attackpower,initX + 95, initY +30); // attack power
 		if(self.getIsDead())
@@ -124,9 +128,11 @@ public class InfoGraphics extends Graph{
 		int cdsize=20;
 		g.drawImage(selfinfo, 180, 565, 730,150, null);
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
-		g.setColor(new Color(220, 255, 200, 200));
+		g.setColor(new Color(0,0,0));
+		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody+2);  //自己Blood要dom 來提供這邊只是假的
+		g.setColor(Color.white);
 		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
-		g.setColor(new Color(255, 255, 255, 200));
+		g.setColor(new Color(255, 255, 255, 225));
 		for(int i=0;i<11;i++)
 		{
 			int j = CastleTable.getCastleTable().getCastle().getCastleBuff()[i]; //list[] 是dom提供的 改好把list刪掉拿dom的就好
@@ -164,8 +170,10 @@ public class InfoGraphics extends Graph{
 		g.drawImage(enemyinfo, 370, 0, 730,150, null);
 		
 		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
-		g.setColor(new Color(220, 255, 200, 200));
-		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody); //eblood敵人城堡血量 同上
+		g.setColor(new Color(0,0,0));
+		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody+2);  //自己Blood要dom 來提供這邊只是假的
+		g.setColor(Color.white);
+		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody);  //自己Blood要dom 來提供這邊只是假的
 		g.setColor(new Color(255, 255, 255, 200));
 		for(int i=0;i<11;i++)
 		{
