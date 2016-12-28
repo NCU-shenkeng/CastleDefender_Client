@@ -54,15 +54,10 @@ public class CharacterGraphic extends Graph
 	public void drawAnimatingPlayer(Graphics g ,Player player)
 	{
 		if(!player.equals(DOM.getSelf()))
-		{
 			setPlayerMovingFrame(player);
-			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); // draw other
-		}
 		else 
-		{
 			setSelf();
-			this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); // draw other
-		}
+		this.drawPlayer(g, player, player.getSprite().getAnimation().getSprite()); // draw other
 	}
 
 	public void drawDeadPlayer(Graphics g , Player player){

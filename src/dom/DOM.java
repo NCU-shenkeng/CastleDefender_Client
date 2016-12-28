@@ -26,8 +26,10 @@ public class DOM {
 		return PlayerTable.getPlayerTable().getTable();
 	}
 	public static void addPlayer(Player player){
-		if(!PlayerTable.getPlayerTable().isExist(player.getNumber()))
+		if(!PlayerTable.getPlayerTable().isExist(player.getNumber())){
 			PlayerTable.getPlayerTable().getTable().add(player);
+			System.out.println("add player : " + player.getNumber());
+		}
 	}
 	public static void updatePlayerHealth(int number , int health){
 		Player player = getPlayer(number);

@@ -99,10 +99,10 @@ public class ClientConfigHandler
 	}
 	private static void close(){
 		Monitor.getInstance().stop();
+		GameEngine.getEngine().stopEngine();
 		TCPClient.getInstance().reset();
 		Server.getUDPUS().reset();
 		GamePanel.getGame().reset();
-		GameEngine.getEngine().stopEngine();
 		DOM.reset();
 	}
 }
