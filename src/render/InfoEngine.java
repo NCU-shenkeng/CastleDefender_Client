@@ -29,7 +29,6 @@ public class InfoEngine extends Engine{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

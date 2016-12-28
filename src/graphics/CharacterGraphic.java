@@ -30,8 +30,20 @@ public class CharacterGraphic extends Graph
 	}
 	private  CharacterGraphic() {}
 
-	@Override
 	public void paint(Graphics g) {
+		
+		for(Player player : DOM.getPlayerTable())
+		{		
+			if(player.getIsDead()){
+				CharacterGraphic.getGraphic().drawDeadPlayer(g, player);
+				continue;
+			}
+			if(player.getSprite().getIsAnimating())
+				CharacterGraphic.getGraphic().drawAnimatingPlayer(g, player);
+			else 
+				CharacterGraphic.getGraphic().drawStaticPlayer(g, player);
+		}
+
 	}
 	
 	public void drawStaticPlayer(Graphics g , Player player)
@@ -66,8 +78,8 @@ public class CharacterGraphic extends Graph
 		if(player.getNumber() == Self.number)//draw self
 		{
 			g.drawImage(image, // image
-			player.getCordinateXInPanel()+3, //location x
-			player.getCordinateYInPanel(), //location y
+			player.getCordinateXInPanel()+8, //location x
+			player.getCordinateYInPanel()-25, //location y
 			80, //width
 			100, //height
 			null);
@@ -77,8 +89,8 @@ public class CharacterGraphic extends Graph
 			if(BackgroundGraphics.getGraph().inMap(player))
 			{
 				g.drawImage(image, 
-						player.getCordinateXInPanel(),
-						player.getCordinateYInPanel(), 
+						player.getCordinateXInPanel()+3,
+						player.getCordinateYInPanel()-25, 
 						80, 
 						100, 
 						null);
@@ -89,7 +101,7 @@ public class CharacterGraphic extends Graph
 	{	
 		if(player.getCharacter().getCurrentHP() ==0) return;
 		int x = player.getCordinateXInPanel();
-		int y = player.getCordinateYInPanel();
+		int y = player.getCordinateYInPanel()-25;
 		g.setColor(player.getTeam() == Self.team ? new Color(50, 205, 50) : Color.red);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(7));

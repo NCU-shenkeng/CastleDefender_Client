@@ -12,6 +12,7 @@ import dom.DOM;
 import dom.EngineTable;
 import graphics.BackgroundGraphics;
 import main.GameFrame;
+import monitor.Monitor;
 import panel.GamePanel;
 import panel.LosePanel;
 import panel.WinPanel;
@@ -36,10 +37,8 @@ public class ClientConfigHandler
 	
 	
 	public static void setWinnerOrLoser(Packet packet){
-		
-		GameEngine.getEngine().stopEngine();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -80,20 +79,30 @@ public class ClientConfigHandler
 		DOM.updatePlayerFacing(number, facing);
 	}
 	public static void startGame(){
+		start();
+	}
+	public static void closeGame(){
+		close();
+	}
+	
+	private static void start(){
 		try 
 		{
+			if(GameEngine.getEngine().getRunningState() || GameEngine.getEngine().getThreadStatus()) return;
 			GameFrame.getGame().changeScreen(GamePanel.getGame());
 			GameEngine.getEngine().startEngine();
-			new Thread(GameEngine.getEngine()).start();
+			Monitor.getInstance().start();
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
 	}
-	public static void closeGame(){
-		DOM.reset();
+	private static void close(){
+		Monitor.getInstance().stop();
 		TCPClient.getInstance().reset();
 		Server.getUDPUS().reset();
 		GamePanel.getGame().reset();
+		GameEngine.getEngine().stopEngine();
+		DOM.reset();
 	}
 }

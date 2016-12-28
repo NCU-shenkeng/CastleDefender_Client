@@ -41,23 +41,6 @@ public class SpriteEngine extends Engine{
 	}
 
 	@Override
-	public void update() {
-		for(Player player : DOM.getPlayerTable()){
-			if(player.getSprite().getIsAnimating()){
-				player.getSprite().getAnimation().start();
-				player.getSprite().getAnimation().update();
-			}
-			else
-				player.getSprite().getAnimation().stop();
-		}
-		checkSelfIsKeyboardDown();
-	}
+	public void update() {}
 	
-	public void checkSelfIsKeyboardDown(){
-		if(!Keyboard.isKeyBoardDown())
-		{
-			DOM.getSelf().getSprite().setAnimating(false);
-			DOM.getSelf().getSprite().getAnimation().stop();
-		}
-	}
 }
