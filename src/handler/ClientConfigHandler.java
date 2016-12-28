@@ -37,8 +37,6 @@ public class ClientConfigHandler
 	
 	
 	public static void setWinnerOrLoser(Packet packet){
-		
-		GameEngine.getEngine().stopEngine();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
@@ -90,6 +88,7 @@ public class ClientConfigHandler
 	private static void start(){
 		try 
 		{
+			if(GameEngine.getEngine().getRunningState() || GameEngine.getEngine().getThreadStatus()) return;
 			GameFrame.getGame().changeScreen(GamePanel.getGame());
 			GameEngine.getEngine().startEngine();
 			Monitor.getInstance().start();

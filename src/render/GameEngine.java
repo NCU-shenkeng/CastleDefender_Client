@@ -143,6 +143,8 @@ public class GameEngine extends Engine{
 //		if(instance == null) instance = getEngine();
 //		EngineTable.startAllEngine();
 		
+		if(this.getThreadStatus() || getRunningState()) return;
+
 		this.start();
 		thread.start();
 		

@@ -18,7 +18,7 @@ public class Monitor implements Runnable{
 	
 	public void start(){
 		this.running = true;
-		new Thread(this).start();
+		new Thread(this , "monitor").start();
 	}
 	public void stop(){
 		this.running = false;
@@ -30,8 +30,7 @@ public class Monitor implements Runnable{
 	public void run() {
 		while(running)
 		{
-			if(!GameEngine.getEngine().getThreadStatus()){
-				System.out.println(GameEngine.getEngine().getThreadStatus());
+			if(!GameEngine.getEngine().getThreadStatus() && running){
 				GameEngine.getEngine().restart();
 			}
 				
