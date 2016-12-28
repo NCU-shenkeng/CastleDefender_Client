@@ -6,7 +6,7 @@ public class Mage extends Character {
 	
 	
 	public Mage() {
-		super(CharacterType.Mage, 4, 0.5, 1 , 1);
+		super(CharacterType.Mage, 3, 0.5, 1 , 1);
 	}
 
 }

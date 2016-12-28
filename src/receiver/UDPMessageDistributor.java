@@ -87,7 +87,6 @@ public class UDPMessageDistributor {
 				case udp.Event.CASTLE_BUFF_HP_CHANGE:
 					Self.hpChangeLastTime = System.currentTimeMillis();
 					Self.hpchange = true;
-					System.out.println("message receive");
 					break;
 			}
 		}

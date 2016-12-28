@@ -46,6 +46,9 @@ public class Parser {
 	public static String toString(int input){
 		return Integer.toString(input);
 	}
+	public static String toString(float input){
+		return Float.toString(input);
+	}
 	public static int parseDirectionToInt(DirectionType direction){
 		switch(direction)
 		{

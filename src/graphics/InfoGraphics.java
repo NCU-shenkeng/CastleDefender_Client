@@ -116,7 +116,7 @@ public class InfoGraphics extends Graph{
 		String health = Parser.toString(self.getCharacter().getCurrentHP());
 		String attackpower = Parser.toString(self.getCharacter().getAttackPower());
 		String type = Parser.parseCharacterToChinese(self.getCharacter().getType());
-		String reviveTime = Parser.toString(self.getReviveTime());
+		String reviveTime = Parser.toString((float)self.getReviveTime()/1000);
 	
 		g.drawString(health,initX + 40, initY + 30); // health
 		g.drawString(attackpower,initX + 95, initY +30); // attack power

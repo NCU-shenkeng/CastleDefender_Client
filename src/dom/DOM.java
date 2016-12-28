@@ -27,7 +27,7 @@ public class DOM {
 	}
 	public static void addPlayer(Player player){
 		if(!PlayerTable.getPlayerTable().isExist(player.getNumber())){
-			PlayerTable.getPlayerTable().getTable().add(player);
+			PlayerTable.getPlayerTable().getTable().add(player.getNumber(),player);
 			System.out.println("add player : " + player.getNumber());
 		}
 	}

@@ -1,9 +1,15 @@
 package receiver;
 
+import java.io.IOException;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 import handler.ClientConfigHandler;
 import handler.PlayerHandler;
+import main.GameFrame;
+import screen.MenuScreen;
+import tcp.TCPClient;
 import udp.Packet;
 import udp.ServerMessageDecoder;
 
@@ -36,7 +42,14 @@ public class TCPMessageDistributor {
 				ClientConfigHandler.setSelfIDAndTeam(packet);
 				break;
 			case tcp.Event.ROOM_FULL:
-				System.out.println("room full");
+				try {
+					JOptionPane.showMessageDialog(null, "Room Full");
+					GameFrame.getGame().changeScreen(new MenuScreen());
+					TCPClient.getInstance().reset();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 		}

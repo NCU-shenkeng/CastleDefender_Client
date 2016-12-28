@@ -154,8 +154,20 @@ public class CharacterAnimation extends Animation{
     		case north:
     			setFrames(allAttackingFrames.get(DirectionType.north));
     			break;
+    		case north_west:
+    			setFrames(allAttackingFrames.get(DirectionType.north));
+    			break;
+    		case north_east:
+    			setFrames(allAttackingFrames.get(DirectionType.east));
+    			break;
     		case south:
     			setFrames(allAttackingFrames.get(DirectionType.south));
+    			break;
+    		case south_east:
+    			setFrames(allAttackingFrames.get(DirectionType.south));
+    			break;
+    		case south_west:
+    			setFrames(allAttackingFrames.get(DirectionType.west));
     			break;
     	}
     }

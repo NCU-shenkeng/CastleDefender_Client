@@ -1,6 +1,7 @@
 package dom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import player.Player;
 
