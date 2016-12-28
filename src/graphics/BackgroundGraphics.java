@@ -27,26 +27,7 @@ public class BackgroundGraphics extends Graph
 	private int BlockY;
 	private Map map;
 	private BufferedImage img[] = new BufferedImage[BasicBlockType.NUMOFBLOCK];
-	/*
-	private final String path[] = {"images/backgound/ROCK.bmp",
-			 					   "images/backgound/SAND1.bmp",
-			 					   "images/backgound/SAND2.bmp",
-			 					   "images/backgound/GRASS1.bmp",
-			 					   "images/backgound/GRASS2.bmp",
-			 					   "images/backgound/BLACK.bmp",
-			 					   "images/backgound/FLOOR1.bmp",
-			 					   "images/backgound/FLOOR2.bmp",
-			 					   "images/backgound/DRAIN.bmp",
-			 					   "images/backgound/CASTLE_A1.png",
-			 					   "images/backgound/CASTLE_A2.png",
-			 					   "images/backgound/CASTLE_A3.png",
-			 					   "images/backgound/CASTLE_A4.png",
-			 					   "images/backgound/CASTLE_A5.png",
-			 					   "images/backgound/CASTLE_A6.png",
-			 					   "images/backgound/CASTLE_A7.png",
-			 					   "images/backgound/CASTLE_A8.png",
-			 					   "images/backgound/CASTLE_A9.png"};
-	*/
+
 	int userViewWidth = 1100;
 	int userViewHigh = 700;
 	int delay = 20; //milliseconds
@@ -113,9 +94,9 @@ public class BackgroundGraphics extends Graph
 		  for (int j = BlockY - blockhighOffset; j <= BlockY + blockhighOffset; j++)
 		  {
 			  if (map.scene[i][j].type >= BasicBlockType.CASTLE_A1)
-				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
-			  else
-				  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
+				  g.drawImage(img[BasicBlockType.GRASS1], userviewX, userviewY, 100, 100, null);
+			  
+			  g.drawImage(img[map.scene[i][j].type], userviewX, userviewY, 100, 100, null);
 			  
 			  userviewY = userviewY + blockSize;
 		  }
