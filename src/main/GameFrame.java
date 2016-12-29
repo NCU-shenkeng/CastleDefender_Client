@@ -21,6 +21,7 @@ public class GameFrame extends JFrame{
 		setTitle("CastleDenfender");
 		setSize(Window.WIDTH , Window.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		this.setLocationRelativeTo(null);
 		//getContentPane().add(new EnterScreen());
 	}

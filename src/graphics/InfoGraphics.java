@@ -29,6 +29,7 @@ public class InfoGraphics extends Graph{
 	private static InfoGraphics infoGraphic = null;
 	
 	private int hpChangeDelay = 3000;
+	private boolean shoeEnemyBuffCD = false;
 	
 	public static InfoGraphics getGraphic(){
 		if(infoGraphic == null){
@@ -128,73 +129,85 @@ public class InfoGraphics extends Graph{
 	
 	public void drawSelfCastleInformation(Graphics g)
 	{
-		int bloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getSelfCastleBlood()) > 99)?528:533;
-		int bloody=605;
-		int offset=45;
-		int itemx=305;
-		int itemy=647;
-		int cdx=312;
-		int cdy=655;
+		int panelDrawX = (cfg.Window.WIDTH / 2) - (730 / 2);
+		int panelDrawY = (cfg.Window.HEIGHT - 180) + 5;
+		int bloodx = (Integer.valueOf(CastleTable.getCastleTable().getCastle().getSelfCastleBlood()) > 99) ? panelDrawX + 350 : panelDrawX + 355;
+		int bloody = panelDrawY + 38;
+		int offset = 45;
+		int itemx = panelDrawX + 123;
+		int itemy = panelDrawY + 77;
 		int fullcircle = 360;
-		int itemsize=30;
-		int cdsize=20;
-		g.drawImage(selfinfo, 180, 565, 730,150, null);
-		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
-		g.setColor(new Color(0,0,0));
-		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody+2);  //自己Blood要dom 來提供這邊只是假的
-		g.setColor(Color.white);
-		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody);  //自己Blood要dom 來提供這邊只是假的
-		g.setColor(new Color(255, 255, 255, 225));
+		int itemsize = 38;
+		int[] itemDrwaPointX =
+		{ itemx, itemx + offset, itemx + (offset * 2) - 1, itemx + (offset * 3) - 1, itemx + (offset * 4) - 1,
+				itemx + (offset * 5) - 2, itemx + (offset * 6) - 2, itemx + (offset * 7) - 2, itemx + (offset * 8) - 2,
+				itemx + (offset * 9) - 3, itemx + (offset * 10) - 3, };
+		g.drawImage(selfinfo, panelDrawX, panelDrawY, 730, 150, null);
+		g.setFont(new Font("monospaced", Font.BOLD | Font.ITALIC, 20));
+		g.setColor(new Color(0, 0, 0, 255));
+		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx - 2, bloody - 2);
+		g.setColor(new Color(255, 255, 255, 255));
+		g.drawString(CastleTable.getCastleTable().getCastle().getSelfCastleBlood(), bloodx, bloody);
+		g.setColor(new Color(255, 255, 255, 200));
+		
 		for(int i=0;i<11;i++)
 		{
-			int j = CastleTable.getCastleTable().getCastle().getCastleBuff()[i]; //list[] 是dom提供的 改好把list刪掉拿dom的就好
-			int lefttime = CastleTable.getCastleTable().getCastle().getCastleBuffCDR()[i]; //time[] 同上 下面缺角跟圓算數學 time[]存要缺的角度 
+			int j = CastleTable.getCastleTable().getCastle().getCastleBuff()[i];
+			int lefttime = CastleTable.getCastleTable().getCastle().getCastleBuffCDR()[i];
 			try
 			{
-				
-
-				if(lefttime  > 0)
+				if (lefttime > 0)
 				{
-					g.drawImage(img[j],itemx,itemy,itemsize,itemsize,null);
-				
-					//System.out.println(String.format("cd %s %s",lefttime,fullcircle-lefttime));
-					g.fillArc(cdx,cdy, cdsize, cdsize, lefttime, fullcircle-lefttime);
-				}
+					int cdrOffset = (int) (((float) (lefttime) / fullcircle) * (itemsize));
+					g.fillRect(itemDrwaPointX[i], itemy + cdrOffset, itemsize, itemsize - cdrOffset);
+					g.drawImage(img[j],itemDrwaPointX[i],itemy,itemsize,itemsize,null);
 					
-				
+				}
 			}
 			catch(Exception e)
 			{
 				System.out.println("Not such as item");
 			}
-			itemx+=offset;
-			cdx+=offset;
 		}
 	}
+	
 	public void drawEnemyCastleInformation(Graphics g)
 	{
-		int ebloodx=(Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99)?531:536;
-		int ebloody=50;
-		int offset=45;
-		int eitemx=610;
-		int eitemy=15;
-		int itemsize=30;
-		g.drawImage(enemyinfo, 370, 0, 730,150, null);
-		
-		g.setFont(new Font("monospaced", Font.BOLD|Font.ITALIC , 20));
-		g.setColor(new Color(0,0,0));
-		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody+2);  //自己Blood要dom 來提供這邊只是假的
-		g.setColor(Color.white);
-		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody);  //自己Blood要dom 來提供這邊只是假的
+		int panelDrawX = (cfg.Window.WIDTH - 730) - 5;
+		int panelDrawY = 0;
+		int ebloodx = (Integer.valueOf(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood()) > 99) ? 531 : 536;
+		int ebloody = 50;
+		int offset = 45;
+		int eitemx = panelDrawX + 235;
+		int eitemy = 12;
+		int itemsize = 38;
+		int[] itemDrwaPointX =
+			{ eitemx, eitemx + offset, eitemx + (offset * 2), eitemx + (offset * 3), eitemx + (offset * 4),
+				eitemx + (offset * 5), eitemx + (offset * 6), eitemx + (offset * 7), eitemx + (offset * 8),
+				eitemx + (offset * 9), eitemx + (offset * 10)};
+		g.drawImage(enemyinfo, panelDrawX, panelDrawY, 730, 150, null);
+
+		g.setFont(new Font("monospaced", Font.BOLD | Font.ITALIC, 20));
+		g.setColor(new Color(0, 0, 0, 255));
+		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx - 3, ebloody - 1);
+		g.setColor(new Color(255, 255, 255, 255));
+		g.drawString(CastleTable.getCastleTable().getCastle().getEnemyCastleBlood(), ebloodx, ebloody);
 		g.setColor(new Color(255, 255, 255, 200));
+		
 		for(int i=0;i<11;i++)
 		{
-			int eitem = CastleTable.getCastleTable().getCastle().getEnemyCastleBuff()[i]; //elist[]敵人buff  DOM提供 待修改
+			int eitem = CastleTable.getCastleTable().getCastle().getEnemyCastleBuff()[i];
 			int lefttime = CastleTable.getCastleTable().getCastle().getEnemyBuffCDR()[i];
 			try
 			{
-				if(lefttime > 0)
-				g.drawImage(img[eitem],eitemx,eitemy,itemsize,itemsize,null);
+				if(lefttime > 0){
+					if (shoeEnemyBuffCD )
+					{
+						int cdrOffset = (int) (((float) (lefttime) / 360) * (itemsize));
+						g.fillRect(itemDrwaPointX[i], eitemy + cdrOffset, itemsize, itemsize - cdrOffset);
+					}
+					g.drawImage(img[eitem],itemDrwaPointX[i],eitemy,itemsize,itemsize,null);
+				}
 			}
 			catch(Exception e)
 			{
