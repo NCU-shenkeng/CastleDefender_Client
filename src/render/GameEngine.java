@@ -35,8 +35,8 @@ public class GameEngine extends Engine{
 //	EffectEngine effectEngine;
 	
 	
-	int walkDelay = (int) (DOM.getSelf().getCharacter().getSpeed() * 300);
 	long lastTime = 0;
+	int walkDelkay = 0;
 	Thread thread;
 	
 	private GameEngine(){
@@ -66,7 +66,7 @@ public class GameEngine extends Engine{
 			//info.start();
 			//effect.start();
 		
-		setFPS(200);
+		setFPS(60);
 		thread = new Thread(this , "GAME ENGINE");
 	}
 	
@@ -109,7 +109,7 @@ public class GameEngine extends Engine{
 			
 			
 			BackgroundGraphics.getGraph().paint(bufferG);
-			ItemGraphic.getGraph().paint(bufferG);
+			//ItemGraphic.getGraph().paint(bufferG);
 			CharacterGraphic.getGraphic().paint(bufferG);
 			InfoGraphics.getGraphic().paint(bufferG);
 			EffectGraphics.getGraphic().paint(bufferG);
@@ -134,7 +134,7 @@ public class GameEngine extends Engine{
 
 	@Override
 	public void update() {
-		sceneUpdate(walkDelay);
+		sceneUpdate((int)(DOM.getSelf().getCharacter().getSpeed() * 1000));
 		spriteUpdate();
 		effectUpdate();
 	}
@@ -167,22 +167,28 @@ public class GameEngine extends Engine{
 	
 	private void sceneUpdate(int delay)
 	{
-		long nowTime = System.currentTimeMillis();
-		if(nowTime - lastTime > delay)
+		if(walkDelkay < 1)
 		{
-			int xOffset = (Keyboard.getLeftInt() * -1) + Keyboard.getRightInt();
-			int yOffset = (Keyboard.getUpInt() * -1) + Keyboard.getDownInt();
-		
-			BackgroundGraphics.getGraph().SetBlockValue(xOffset , yOffset);
-		
-			if(BackgroundGraphics.getGraph().canPass(DOM.getSelf().getSprite().getX() + xOffset,DOM.getSelf().getSprite().getY() + yOffset))
+			if (Keyboard.isKeyBoardDown())
 			{
-				DOM.getSelf().getSprite().setXY(DOM.getSelf().getSprite().getX() + xOffset , 
-												DOM.getSelf().getSprite().getY() + yOffset);
+				int xOffset = (Keyboard.getLeftInt() * -1) + Keyboard.getRightInt();
+				int yOffset = (Keyboard.getUpInt() * -1) + Keyboard.getDownInt();
+				
+				if (xOffset != 0 || yOffset != 0)
+				{
+					BackgroundGraphics.getGraph().SetBlockValueWithMoveFlow(xOffset,yOffset);
+					if(BackgroundGraphics.getGraph().canPass(DOM.getSelf().getSprite().getX() + xOffset,DOM.getSelf().getSprite().getY() + yOffset))
+					{
+						DOM.getSelf().getSprite().setXY(DOM.getSelf().getSprite().getX() + xOffset , 
+														DOM.getSelf().getSprite().getY() + yOffset);
+					}
+					walkDelkay += delay;
+					TCPClient.getInstance().send(MessageBuilder.location());
+				}
 			}
-			lastTime = nowTime;
+		}else{
+			walkDelkay -= 1000/GameEngine.getEngine().getFps();
 		}
-		TCPClient.getInstance().send(MessageBuilder.location());
 	}
 	
 	private void spriteUpdate(){

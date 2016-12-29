@@ -88,7 +88,25 @@ public class ItemGraphic extends Graph
 				}
 			}			
 		}
-	}	
+	}
+	
+	public void drawItemAtBaground(Graphics g,int i,int j,int userviewX,int userviewY,int appendX,int appendY)
+	{
+		ArrayList<Item> itemList = ItemTable.getItemTable().getTable();
+		if (g != null)
+		{
+			if (itemList != null)
+			{
+				for (Item item : itemList)
+				{
+					if (item.getItemXY().getX() == i && item.getItemXY().getY() == j)
+					{
+						g.drawImage(img[item.getType()], userviewX + appendX, userviewY + appendY, 50, 50, null);
+					}
+				}
+			}
+		}
+	}
 	
 	private void OpenImge (BufferedImage img[])
 	{

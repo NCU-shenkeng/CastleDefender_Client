@@ -23,17 +23,18 @@ public abstract class Engine implements Runnable
 	@Override
 	public void run()
 	{
-		long lastTime = System.currentTimeMillis();
-		
 		while(running)
 		{
-			long now = System.currentTimeMillis();
-			if(lastTime + ms <= now){
-				lastTime = now;
-				tick();
+			render();
+			tick();
+			try
+			{
+				Thread.sleep(ms);
+			} catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			if(running)	
-				render();
 		}
 		running = false;
 	}
@@ -47,7 +48,7 @@ public abstract class Engine implements Runnable
 	}
 	public void setFPS(int fps){
 		this.fps = fps;
-		ms = 1000 / fps;
+		this.ms = 1000 / fps;
 	}
 	public void stop(){
 		this.running = false;
@@ -57,6 +58,10 @@ public abstract class Engine implements Runnable
 	}
 	public BufferedImage getBuffer(){
 		return doneImage;
+	}
+	public long getFps()
+	{
+		return fps;
 	}
 
 }
