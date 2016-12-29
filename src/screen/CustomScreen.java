@@ -55,7 +55,7 @@ public class CustomScreen extends JPanel implements KeyListener{
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, Window.WIDTH , Window.HEIGHT-28 ,null);
 	}
 	private void requestFoucus()
 	{

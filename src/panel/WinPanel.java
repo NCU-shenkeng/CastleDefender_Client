@@ -14,6 +14,9 @@ import main.GameFrame;
 import screen.EnterScreen;
 
 public class WinPanel extends JPanel implements KeyListener{
+	
+	long lastTime = 0;
+	
 	public WinPanel()
 	{
 		this.setVisible(true);
@@ -21,6 +24,8 @@ public class WinPanel extends JPanel implements KeyListener{
 		this.setFocusable(true);
 		this.requestFocus();
 		this.addKeyListener(this);
+		
+		lastTime = System.currentTimeMillis();
 	}
 	
 	public void paintComponent(Graphics g)
@@ -34,8 +39,10 @@ public class WinPanel extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		long nowTime = System.currentTimeMillis();
 		try {
-			GameFrame.getGame().changeScreen(new EnterScreen());
+			if(nowTime - lastTime > 5000)
+				GameFrame.getGame().changeScreen(new EnterScreen());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
