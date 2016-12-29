@@ -1,6 +1,7 @@
 package main;
 
 
+import java.awt.Menu;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Stack;
@@ -9,6 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import cfg.Window;
+import panel.GamePanel;
+import panel.LosePanel;
+import panel.WinPanel;
+import screen.CharacterSelectionScreen;
+import screen.EnterScreen;
+import screen.MenuScreen;
+import sound.BGM;
 
 
 public class GameFrame extends JFrame{
@@ -61,6 +69,24 @@ public class GameFrame extends JFrame{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(cs);
 		refresh();
+		System.out.println(cs.getClass().getName());
+		if (cs instanceof CharacterSelectionScreen)
+		{
+			BGM.getBGM().playBGM("Select");
+		}else if (cs instanceof EnterScreen) {
+			BGM.getBGM().playBGM("Menu");
+		}else if (cs instanceof MenuScreen) {
+			if (!BGM.getBGM().getNowPlaying().equals("Menu"))
+			{
+				BGM.getBGM().playBGM("Menu");
+			}
+		}else if (cs instanceof GamePanel) {
+			BGM.getBGM().playBGM("Gaming");
+		}else if (cs instanceof WinPanel) {
+			BGM.getBGM().playBGM("Win");
+		}else if (cs instanceof LosePanel) {
+			BGM.getBGM().playBGM("Lose");
+		}
 		cs.requestFocus();
 	}
 	
