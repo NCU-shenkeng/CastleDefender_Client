@@ -20,7 +20,7 @@ public class CastleHandler {
 				newBuff.typeID = Integer.valueOf(packet.getArgs().get(i));
 				newBuff.time = Integer.valueOf(packet.getArgs().get(i+1));
 				newBuff.fulltime = Integer.valueOf(packet.getArgs().get(i+2));
-				
+				if(newBuff.fulltime == 0) newBuff.fulltime = 1;
 				temp.add(newBuff);
 			} catch (Exception e) {
 				e.printStackTrace();
